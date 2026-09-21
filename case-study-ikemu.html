@@ -200,6 +200,51 @@
       margin: 48px 0;
     }
 
+    /* ── ACHIEVEMENTS ── */
+    .ik-achievements {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0 0;
+    }
+    .ik-achievement-card {
+      display: block;
+      border: 1px solid var(--grey-100);
+      border-radius: 12px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    a.ik-achievement-card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .ik-achievement-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--grey-100);
+      color: var(--grey-150);
+      margin-bottom: 16px;
+    }
+    .ik-achievement-card h3 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      color: var(--grey-200);
+      margin: 0 0 10px;
+    }
+    .ik-achievement-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--grey-150);
+      margin: 0;
+    }
+
     /* ── QUOTE ── */
     .ik-quote {
       background: var(--red);
@@ -348,7 +393,7 @@
       .ik-wrap { padding: 0 24px; }
       .cs-hero-content { padding: 120px 24px 56px; }
       .ik-two-col, .ik-two-col.flip { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
-      .ik-grid-2, .ik-grid-3 { grid-template-columns: 1fr; }
+      .ik-grid-2, .ik-grid-3, .ik-achievements { grid-template-columns: 1fr; }
       .ik-stats-inner { grid-template-columns: 1fr 1fr; }
       .ik-chapter { grid-template-columns: 1fr; }
       .ik-chapter-num { display: none; }
@@ -547,6 +592,11 @@
       </div>
     </div>
 
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (13).png" alt="KFC Japan branded game" />
+      <p class="ik-caption" style="padding: 0 0 16px;">KFC Japan game — branded shrimp battle on mobile</p>
+    </div>
+
     <!-- 05 GAMIFICATION -->
     <div class="ik-chapter cs-reveal">
       <div class="ik-chapter-num">06</div>
@@ -628,15 +678,9 @@
       <p>KFC Japan used iKEMU to build awareness for a new shrimp product. The brief called for a game that matched the campaign narrative — shrimp staging a takeover of the chicken-dominated KFC world. The team customised an existing game into an edo-period battle scene, reskinned it to the brand's aesthetic, and launched it on the campaign microsite.</p>
     </div>
 
-    <div class="ik-grid-2 cs-reveal">
-      <div>
-        <div class="ik-media"><img src="Ikemu/download (13).png" alt="KFC Japan branded game" /></div>
-        <p class="ik-caption">KFC Japan game — branded shrimp battle on mobile</p>
-      </div>
-      <div>
-        <div class="ik-media"><img src="Ikemu/download (14).png" alt="KFC Japan campaign microsite" /></div>
-        <p class="ik-caption">KFC Japan campaign microsite — full branded experience</p>
-      </div>
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (14).png" alt="KFC Japan campaign microsite" />
+      <p class="ik-caption" style="padding: 0 0 16px;">KFC Japan campaign microsite — full branded experience</p>
     </div>
 
     <div class="ik-media-full cs-reveal">
@@ -644,30 +688,46 @@
       <p class="ik-caption" style="padding: 0 0 16px;">Campaign results — 854k plays, 1.1m Twitter reach, 106% of annual store sales target</p>
     </div>
 
-    <!-- 10 FINAL -->
+    <!-- 10 ACHIEVEMENTS -->
     <div class="ik-chapter cs-reveal">
       <div class="ik-chapter-num">10</div>
       <div class="ik-chapter-head">
-        <h2>A platform built to last</h2>
-        <p class="sub">Final product</p>
+        <h2>Recognition along the way</h2>
+        <p class="sub">Achievements</p>
       </div>
     </div>
 
-    <div class="ik-body ik-body-narrow cs-reveal">
-      <p>Over seven years, iKEMU grew from a founding idea into a fully operational games marketplace. The platform served brands across Japan, the Middle East, and Southeast Asia — with a library of branded games, a developer community, and a consumer product with a full gamification layer.</p>
-    </div>
-
-    <div class="ik-grid-2 cs-reveal">
-      <div>
-        <div class="ik-media"><img src="Ikemu/f33c90_b845280d09704a3ab51e0b30b2c31306~mv2.avif" alt="iKEMU platform screen" /></div>
+    <div class="ik-achievements cs-reveal">
+      <div class="ik-achievement-card">
+        <span class="ik-achievement-tag">Acceleration</span>
+        <h3>Asia-Fab by Orange</h3>
+        <p>Selected to be part of an accelerator program in Asia, supported by Orange.</p>
       </div>
-      <div>
-        <div class="ik-media"><img src="Ikemu/f33c90_d5302cb948c54299b1f0c08b29c3a61f~mv2_d_2617_1792_s_2.avif" alt="iKEMU platform screen 2" /></div>
+      <a class="ik-achievement-card" href="https://www.atpress.ne.jp/news/113591" target="_blank" rel="noopener">
+        <span class="ik-achievement-tag">Finalist</span>
+        <h3>Microsoft Innovation</h3>
+        <p>Selected as a finalist in the Microsoft Innovation competition in Tokyo, 2017.</p>
+      </a>
+      <a class="ik-achievement-card" href="https://www.iid.co.jp/news/press/2017/032901.html" target="_blank" rel="noopener">
+        <span class="ik-achievement-tag">Collaboration</span>
+        <h3>idd Japan</h3>
+        <p>idd Japan collaboration to create Game Spark.</p>
+      </a>
+      <a class="ik-achievement-card" href="https://stoppress.co.nz/news/ikemu-expands-advergame-offering-japanese-partnership/" target="_blank" rel="noopener">
+        <span class="ik-achievement-tag">News</span>
+        <h3>Idealog</h3>
+        <p>Covered by Idealog in New Zealand.</p>
+      </a>
+      <div class="ik-achievement-card">
+        <span class="ik-achievement-tag">Pitching</span>
+        <h3>SLUSH Japan</h3>
+        <p>Pitching at SLUSH, the biggest startup event in Japan.</p>
       </div>
-    </div>
-
-    <div class="ik-media-full cs-reveal">
-      <img src="Ikemu/f33c90_f8dca46c917a4e19be03974f71d8e46c~mv2.avif" alt="iKEMU admin dashboard" />
+      <div class="ik-achievement-card">
+        <span class="ik-achievement-tag">LID news</span>
+        <h3>LID Japan news</h3>
+        <p>Covered by LID Japan news.</p>
+      </div>
     </div>
 
   </div><!-- /ik-wrap -->
