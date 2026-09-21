@@ -112,24 +112,18 @@
 
     /* ── CHAPTER MARKER ── */
     .ik-chapter {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 32px;
-      align-items: start;
       padding: 100px 0 0;
       border-top: 1px solid var(--grey-100);
       margin-bottom: 48px;
     }
     .ik-chapter.no-border { border-top: none; padding-top: 64px; }
-    .ik-chapter-num {
-      font-family: 'Antonio', sans-serif;
-      font-weight: 600;
-      font-size: 88px;
-      line-height: 0.85;
-      color: var(--grey-100);
-      letter-spacing: -4px;
-      user-select: none;
-      text-align: right;
+    .ik-chapter-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
     }
     .ik-chapter-head h2 {
       font-family: 'Antonio', sans-serif;
@@ -398,8 +392,6 @@
       .ik-two-col, .ik-two-col.flip { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
       .ik-grid-2, .ik-grid-3, .ik-achievements { grid-template-columns: 1fr; }
       .ik-stats-inner { grid-template-columns: 1fr 1fr; }
-      .ik-chapter { grid-template-columns: 1fr; }
-      .ik-chapter-num { display: none; }
       .ik-quote { padding: 40px 24px; }
       .ik-next { padding: 64px 24px; }
     }
@@ -472,8 +464,8 @@
 
     <!-- 01 BACKGROUND AND CONTEXT -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">01</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 01: Background and Context</p>
         <h2>Background and Context</h2>
         <p class="sub">Origin story</p>
       </div>
@@ -488,8 +480,8 @@
 
     <!-- 02 THE PROBLEM -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">02</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 02: Ads were ignored. Games were not.</p>
         <h2>Ads were ignored.<br>Games were not.</h2>
         <p class="sub">The founding insight</p>
       </div>
@@ -512,8 +504,8 @@
 
     <!-- 02 PLATFORM MODEL -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">03</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 03: Three sides of a marketplace</p>
         <h2>Three sides of a marketplace</h2>
         <p class="sub">Platform model</p>
       </div>
@@ -540,8 +532,8 @@
 
     <!-- 03 STORYBOARDS -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">04</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 04: Visualising user behaviour before building</p>
         <h2>Visualising user behaviour before building</h2>
         <p class="sub">Research &amp; storyboarding</p>
       </div>
@@ -569,8 +561,8 @@
 
     <!-- 04 IA -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">05</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 05: Mapping a multi-sided system</p>
         <h2>Mapping a multi-sided system</h2>
         <p class="sub">Information architecture</p>
       </div>
@@ -602,8 +594,8 @@
 
     <!-- 05 GAMIFICATION -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">06</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 06: A system that kept people playing</p>
         <h2>A system that kept people playing</h2>
         <p class="sub">Gamification &amp; engagement design</p>
       </div>
@@ -620,8 +612,8 @@
 
     <!-- 06 WIREFRAMES -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">07</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 07: From storyboard to screen</p>
         <h2>From storyboard to screen</h2>
         <p class="sub">Platform wireframes</p>
       </div>
@@ -643,8 +635,8 @@
 
     <!-- 07 MOBILE -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">08</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 08: From concept to polished product</p>
         <h2>From concept to polished product</h2>
         <p class="sub">Mobile app</p>
       </div>
@@ -670,8 +662,8 @@
 
     <!-- 09 KFC CASE -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">09</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 09: 854,454 plays. One month's stock sold out in two weeks.</p>
         <h2>854,454 plays. One month's stock sold out in two weeks.</h2>
         <p class="sub">Campaign in action — KFC Japan</p>
       </div>
@@ -693,8 +685,8 @@
 
     <!-- 10 ACHIEVEMENTS -->
     <div class="ik-chapter cs-reveal">
-      <div class="ik-chapter-num">10</div>
       <div class="ik-chapter-head">
+        <p class="ik-chapter-label">Chapter 10: Recognition along the way</p>
         <h2>Recognition along the way</h2>
         <p class="sub">Achievements</p>
       </div>
