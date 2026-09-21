@@ -232,6 +232,23 @@
       padding: 5px 12px;
       border: 1px solid var(--grey-100);
       color: var(--grey-150);
+      background: none;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .ik-tag:hover { border-color: var(--grey-150); color: var(--grey-200); }
+    .ik-tag.active { background: var(--grey-200); border-color: var(--grey-200); color: #fff; }
+
+    .ik-tag-panel {
+      margin-top: 20px;
+      padding: 24px;
+      border-left: 3px solid var(--red);
+      background: var(--bg);
+    }
+    .ik-tag-panel p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--grey-150);
     }
 
     /* ── STATS STRIP ── */
@@ -458,15 +475,19 @@
       <p>iKEMU served three distinct user types simultaneously: game developers who built and uploaded HTML5 games, brands who sponsored and customised those games for campaigns, and end users who played on brand microsites and mobile. Designing for all three required a platform that could flex without fracturing.</p>
     </div>
 
-    <div class="ik-tags cs-reveal">
-      <span class="ik-tag">Developer portal</span>
-      <span class="ik-tag">Brand dashboard</span>
-      <span class="ik-tag">Games library</span>
-      <span class="ik-tag">QA pipeline</span>
-      <span class="ik-tag">Art reskinning</span>
-      <span class="ik-tag">Reward system</span>
-      <span class="ik-tag">Analytics</span>
-      <span class="ik-tag">Mobile app</span>
+    <div class="ik-tags cs-reveal" id="ik-platform-tags">
+      <button type="button" class="ik-tag" data-tag="developer-portal" aria-expanded="false">Developer portal</button>
+      <button type="button" class="ik-tag" data-tag="brand-dashboard" aria-expanded="false">Brand dashboard</button>
+      <button type="button" class="ik-tag" data-tag="games-library" aria-expanded="false">Games library</button>
+      <button type="button" class="ik-tag" data-tag="qa-pipeline" aria-expanded="false">QA pipeline</button>
+      <button type="button" class="ik-tag" data-tag="art-reskinning" aria-expanded="false">Art reskinning</button>
+      <button type="button" class="ik-tag" data-tag="reward-system" aria-expanded="false">Reward system</button>
+      <button type="button" class="ik-tag" data-tag="analytics" aria-expanded="false">Analytics</button>
+      <button type="button" class="ik-tag" data-tag="mobile-app" aria-expanded="false">Mobile app</button>
+    </div>
+
+    <div class="ik-tag-panel cs-reveal" id="ik-tag-panel" hidden>
+      <p id="ik-tag-panel-text"></p>
     </div>
 
     <!-- 03 STORYBOARDS -->
@@ -741,6 +762,44 @@ var observer = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.cs-reveal').forEach(function(el) {
   observer.observe(el);
 });
+
+(function() {
+  var tagContent = {
+    'developer-portal': "The developer portal is a place for developers to prepare their HTML5 games and plug them into the system. It's also where they can monetise and track the money they've made from their games.",
+    'brand-dashboard': "The brand dashboard is where brands go to view the campaigns they have live. They plug in their rewards, view the names of the winners, and see the number of plays.",
+    'games-library': "The games library is a collection of curated and sourced HTML5 games that brands can browse, play, and select from for their campaign.",
+    'qa-pipeline': "The QA pipeline is the internal tool we use to review each game, catch issues, and make sure games adhere to the rules and regulations of the brand.",
+    'art-reskinning': "Art reskinning is our self-serve automation engine. Brands don't need us to change or modify a game's art — they can download and reskin it themselves. The engine breaks out the game's assets, and all they have to do is upload their own art in its place.",
+    'reward-system': "The reward system is where brands specify which reward they want to send and when. They can choose to send a reward to the highest scorer on the leaderboard, or send it out randomly.",
+    'analytics': "Analytics is how brands and developers track and analyse a game's ROI, with visibility into engagement numbers and analysis.",
+    'mobile-app': "The mobile app is the player-facing app. Players can see all the games available for them to play and win."
+  };
+  var buttons = document.querySelectorAll('#ik-platform-tags .ik-tag');
+  var panel = document.getElementById('ik-tag-panel');
+  var panelText = document.getElementById('ik-tag-panel-text');
+  var activeBtn = null;
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var key = btn.getAttribute('data-tag');
+      if (activeBtn === btn) {
+        panel.hidden = true;
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded', 'false');
+        activeBtn = null;
+        return;
+      }
+      if (activeBtn) {
+        activeBtn.classList.remove('active');
+        activeBtn.setAttribute('aria-expanded', 'false');
+      }
+      panelText.textContent = tagContent[key];
+      panel.hidden = false;
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+      activeBtn = btn;
+    });
+  });
+})();
 </script>
 
 <script src="cms.js"></script>
