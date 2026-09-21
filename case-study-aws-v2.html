@@ -199,6 +199,10 @@
       line-height: 1.1;
       max-width: 900px;
     }
+    .cs-highlight {
+      background: linear-gradient(to bottom, transparent 62%, rgba(227,76,39,0.22) 62%);
+      font-weight: 600;
+    }
 
     /* ── PADDING ── */
     .cs-pad { padding: 0 0 100px; }
@@ -1375,10 +1379,10 @@
     </div>
 
     <div class="cs-body" style="max-width:720px;">
-      <p>AWS Management Tools had grown as a collection of independently developed services, each with its own team, roadmap, and technical model. Customers had to connect them into working environments themselves—learning the services, researching best practices, and configuring resources across accounts and Regions before they could begin operating effectively.</p>
-      <p>My remit covered the end-to-end experience across seven product areas. The challenge extended beyond individual interfaces: the customer journey depended on decisions made across more than 30 teams in nine organizational units, with existing commitments and competing priorities.</p>
-      <p>I saw an opportunity to build a consumer-grade experience on top of those powerful building blocks. Customers could start with what they wanted to accomplish, use recommended configurations to get running, and manage their resources through a connected experience. Making setup easier also had a commercial purpose: shortening the path to adoption and use of the underlying AWS services.</p>
-      <p>I originated and wrote the proposal that developed into the Systems Manager cockpit strategy: one place to group resources, view insights, and act. I then led the multidisciplinary team responsible for turning that direction into an experience we released incrementally over three years.</p>
+      <p>AWS Management Tools had grown as a collection of <strong>independently developed services</strong>, each with its own team, roadmap, and technical model. Customers had to connect them into working environments themselves—learning the services, researching best practices, and configuring resources across accounts and Regions before they could begin operating effectively.</p>
+      <p>My remit covered the end-to-end experience across <strong>seven product areas</strong>. The challenge extended beyond individual interfaces: the customer journey depended on decisions made across <span class="cs-highlight">more than 30 teams in nine organizational units</span>, with existing commitments and competing priorities.</p>
+      <p>I saw an opportunity to build a <strong>consumer-grade experience</strong> on top of those powerful building blocks. Customers could start with what they wanted to accomplish, use recommended configurations to get running, and manage their resources through a connected experience. Making setup easier also had a commercial purpose: shortening the path to adoption and use of the underlying AWS services.</p>
+      <p>I originated and wrote the proposal that developed into the <strong>Systems Manager cockpit strategy</strong>: one place to group resources, view insights, and act. I then led the multidisciplinary team responsible for turning that direction into an experience we released incrementally over <strong>three years</strong>.</p>
     </div>
 
     <div class="cs-red-quote cs-reveal" id="hero-quote" style="margin-top:56px; margin-bottom:0;">
@@ -1403,8 +1407,8 @@
     <div class="cs-two-col top">
       <div class="cs-body">
         <p>AWS had grown through powerful, independently developed services. Each team optimized its own product, with its own roadmap, technical model, and priorities.</p>
-        <p>Customers experienced the spaces between them. Setting up infrastructure, checking its configuration, investigating an incident, and resolving it could mean moving between multiple consoles, searching documentation, and piecing together the same context repeatedly.</p>
-        <p>The challenge was to make the portfolio work as a connected experience while preserving the flexibility that made the individual services valuable.</p>
+        <p>Customers experienced <strong>the spaces between them</strong>. Setting up infrastructure, checking its configuration, investigating an incident, and resolving it could mean moving between multiple consoles, searching documentation, and piecing together the same context repeatedly.</p>
+        <p>The challenge was to make the portfolio work as <strong>a connected experience</strong> while preserving the flexibility that made the individual services valuable.</p>
       </div>
       <div>
         <div class="cs-quote" style="margin:0; padding:40px 0;">
@@ -1550,7 +1554,7 @@
     </div>
 
     <div class="cs-body" style="max-width:680px;margin-bottom:48px;">
-      <p>Each service in the portfolio had its own team, roadmap, and model. Together, they covered the full arc of cloud operations, but customers experienced the gaps between them. The work was to connect them around what someone actually needed to do.</p>
+      <p>Each service in the portfolio had its own team, roadmap, and model. Together, they covered the full arc of cloud operations, but customers experienced <strong>the gaps between them</strong>. The work was to connect them around <strong>what someone actually needed to do</strong>.</p>
     </div>
 
     <!-- Interactive journey arc -->
@@ -1653,9 +1657,9 @@
 
     <div class="cs-two-col top">
       <div class="cs-body">
-        <p>I proposed a consumer-grade experience for AWS: customers should be able to set up and operate their infrastructure without first having to learn how every underlying service worked. I wrote the strategy document and secured management support for a small team to build a proof of concept.</p>
-        <p>I commissioned external research and spoke directly with customers at re:Invent and the New York Summit. Their frustration with usability, documentation, and setup reinforced the opportunity. Quick Setup would bring recommended configurations and best practices into the product, shortening the path from purchasing AWS services to using them.</p>
-        <p>The proposal developed into the Systems Manager cockpit strategy: one place to group resources, understand their state, and act. I presented the work to leadership, and Andy Jassy, then CEO of AWS, approved the strategy.</p>
+        <p>I proposed a <strong>consumer-grade experience</strong> for AWS: customers should be able to set up and operate their infrastructure without first having to learn how every underlying service worked. I wrote the strategy document and secured management support for a small team to build a proof of concept.</p>
+        <p>I commissioned external research and spoke directly with customers at <strong>re:Invent</strong> and the <strong>New York Summit</strong>. Their frustration with usability, documentation, and setup reinforced the opportunity. <strong>Quick Setup</strong> would bring recommended configurations and best practices into the product, shortening the path from purchasing AWS services to using them.</p>
+        <p>The proposal developed into the Systems Manager cockpit strategy: one place to group resources, understand their state, and act. I presented the work to leadership, and <span class="cs-highlight">Andy Jassy, then CEO of AWS, approved the strategy</span>.</p>
       </div>
       <div class="cs-media tall">
         <picture>
@@ -1678,7 +1682,7 @@
       </div>
       <div class="cs-body">
         <p>We began by reviewing existing research, identifying gaps, and establishing a baseline for the experience. Interviews, journey mapping, usage analysis, MaxDiff task prioritization, and usability evaluations helped us identify recurring friction and focus our effort.</p>
-        <p>One disconnect stood out: design teams were focused on the practitioners operating AWS every day. Leadership conversations often centered on the executives choosing and buying it. We mapped roles, responsibilities, and influence inside customer organizations to bring those perspectives together.</p>
+        <p>One disconnect stood out: design teams were focused on the <strong>practitioners</strong> operating AWS every day. Leadership conversations often centered on the <strong>executives</strong> choosing and buying it. We mapped roles, responsibilities, and influence inside customer organizations to bring those perspectives together.</p>
       </div>
     </div>
 
@@ -1703,7 +1707,7 @@
 
     <div class="cs-hats-section">
       <div class="cs-hats-intro cs-body" style="max-width:680px;margin-bottom:40px;">
-        <p>We found that people moved between responsibilities. The same person might write code as a developer, configure infrastructure as an architect, and investigate an incident as an on-call operator. We called these responsibilities "hats." That gave us a more useful way to organize the experience: around what someone needed to accomplish in a particular moment.</p>
+        <p>We found that people moved between responsibilities. The same person might write code as a developer, configure infrastructure as an architect, and investigate an incident as an on-call operator. We called these responsibilities <strong>"hats."</strong> That gave us a more useful way to organize the experience: around what someone needed to accomplish in a particular moment.</p>
       </div>
       <div class="cs-hats-tabs">
         <button class="cs-hat-btn active" data-hat="dev">
@@ -1762,9 +1766,13 @@
     </div>
 
     <div class="cs-body" style="max-width:720px;">
-      <p>Delivering the connected experience required investment from seven product teams with existing priorities. Individual interface improvements would not be enough. We needed those teams to build the underlying capabilities that made cross-service workflows possible.</p>
-      <p>I used customer research and the setup-time opportunity to make the case for redirecting resources. Working with my GM and engineering leaders, I influenced the service roadmaps and helped secure a dedicated team focused on the customer experience across product boundaries.</p>
+      <p>Delivering the connected experience required investment from <strong>seven product teams</strong> with existing priorities. Individual interface improvements would not be enough. We needed those teams to build the underlying capabilities that made cross-service workflows possible.</p>
+      <p>I used customer research and the setup-time opportunity to make the case for <strong>redirecting resources</strong>. Working with my GM and engineering leaders, I influenced the service roadmaps and helped secure a dedicated team focused on the customer experience across product boundaries.</p>
       <p>I owned the end-to-end experience and release, with product managers, designers, and design technologists reporting to me. I partnered directly with the engineering manager, prioritized the roadmap, and brought in external research and consultancy support where we needed additional expertise or capacity.</p>
+    </div>
+
+    <div class="cs-red-quote" style="margin-top:56px; margin-bottom:0;">
+      <blockquote>Individual interface improvements would not be enough.</blockquote>
     </div>
 
   </div>
@@ -1790,7 +1798,7 @@
     </div>
 
     <div class="cs-body cs-body-light" style="max-width:680px;margin-bottom:80px;">
-      <p>We shaped the experience around four activities: set up, find context, investigate, and act. This gave the portfolio a shared direction while allowing teams to contribute through their existing services.</p>
+      <p>We shaped the experience around <strong>four activities: set up, find context, investigate, and act</strong>. This gave the portfolio a shared direction while allowing teams to contribute through their existing services.</p>
     </div>
 
     <div class="cs-journey">
@@ -1825,23 +1833,15 @@
               <p>This work included bringing Config into the setup journey — customers could establish configuration recording by choosing coverage, delivery settings, notifications, and target accounts and Regions.</p>
             </div>
           </div>
-          <div class="cs-journey-imgs grid-3">
+          <div class="cs-journey-imgs grid-2">
             <div class="cs-media">
               <picture>
-                <source type="image/avif" srcset="public/aws-quick-setup.avif">
-                <img src="public/aws-quick-setup.jpg" alt="AWS Quick Setup">
+                <img src="public/aws-config-recording.avif" alt="AWS Config recording setup">
               </picture>
             </div>
             <div class="cs-media">
               <picture>
-                <source type="image/avif" srcset="public/aws-setup-scope.avif">
-                <img src="public/aws-setup-scope.jpg" alt="Setup scope selection">
-              </picture>
-            </div>
-            <div class="cs-media">
-              <picture>
-                <source type="image/avif" srcset="public/aws-setup-targets.avif">
-                <img src="public/aws-setup-targets.jpg" alt="Setup targets">
+                <img src="public/aws-config-audit.avif" alt="AWS Config audit view">
               </picture>
             </div>
           </div>
@@ -1852,7 +1852,7 @@
             <h3>Bring the right resources into view</h3>
             <div>
               <p>We developed focused hubs around use cases and responsibilities, bringing related resources and information into a shared context. Resource grouping helped customers work with the infrastructure behind an application or environment.</p>
-              <p>This approach supported the "hats" insight: the most useful view depended on the responsibility someone was taking on at that moment.</p>
+              <p>This approach supported the <strong>"hats" insight</strong>: the most useful view depended on the responsibility someone was taking on at that moment.</p>
             </div>
           </div>
           <div class="cs-journey-imgs grid-2">
@@ -1875,7 +1875,7 @@
           <div class="cs-journey-panel-head">
             <h3>Investigate the issue in one place</h3>
             <div>
-              <p>An operational problem should not require the customer to assemble an investigation environment first. OpsCenter organized investigation around OpsItems: operational issues with relevant resources and supporting information attached.</p>
+              <p><strong>An operational problem should not require the customer to assemble an investigation environment first.</strong> OpsCenter organized investigation around OpsItems: operational issues with relevant resources and supporting information attached.</p>
               <p>Config history, CloudTrail activity, metrics, and alerts helped customers understand what had happened without repeatedly reconstructing the context across consoles. Searchable details, priorities, statuses, related issues, and summary views supported both individual investigations and the broader operational workload.</p>
             </div>
           </div>
@@ -1939,12 +1939,12 @@
 
     <div class="cs-two-col top" style="margin-bottom:56px;">
       <div class="cs-body">
-        <p>We introduced a library of recommended setups and configurations tailored to common use cases. Customers could pick a configuration and apply it across accounts, regions, or even their entire organization — all without wrestling with unnecessary complexity.</p>
-        <p>Instead of overwhelming users with endless fields, we focused on the essentials: what the setup does and where it should be applied — whether to a single instance, an entire account, or the full organizational structure.</p>
-        <p>Under the hood, the experience was powered by CloudFormation substacks, making it easy for power users to customize and extend. We designed the product itself as a platform, allowing teams to plug in their own configurations and workflows.</p>
+        <p>We introduced <strong>a library of recommended setups</strong> and configurations tailored to common use cases. Customers could pick a configuration and apply it across accounts, regions, or even their entire organization — all without wrestling with unnecessary complexity.</p>
+        <p>Instead of overwhelming users with endless fields, we focused on the essentials: <strong>what the setup does and where it should be applied</strong> — whether to a single instance, an entire account, or the full organizational structure.</p>
+        <p>Under the hood, the experience was powered by <strong>CloudFormation substacks</strong>, making it easy for power users to customize and extend. We designed the product itself as a platform, allowing teams to plug in their own configurations and workflows.</p>
       </div>
       <div class="cs-body">
-        <p>The library was created and owned by my team as a platform, not just a catalog of templates. It offered customers ready-to-use setups that worked across accounts, regions, or entire organizations, while allowing other AWS teams to build and publish their own quick-start configurations.</p>
+        <p>The library was created and owned by my team as <strong>a platform, not just a catalog of templates</strong>. It offered customers ready-to-use setups that worked across accounts, regions, or entire organizations, while allowing other AWS teams to build and publish their own quick-start configurations.</p>
         <p>This approach delivered immediate value to customers and scaled internally, enabling faster innovation, greater consistency, and a growing ecosystem of reusable solutions.</p>
       </div>
     </div>
@@ -1980,7 +1980,7 @@
         <p>Each action comes with pre-filled fields based on AWS best practices, so customers can launch quickly with recommended defaults or switch to an advanced mode for full customization.</p>
       </div>
       <div class="cs-body">
-        <p>Selecting and configuring a package results in the creation of a curated bundle of AWS services — all tailored to the specific use case the customer has chosen. Rather than reinventing the wheel, the UI layer was designed on top of existing AWS services, abstracting away their complexity and presenting them as a single, unified workflow.</p>
+        <p>Selecting and configuring a package results in the creation of a <strong>curated bundle of AWS services</strong> — all tailored to the specific use case the customer has chosen. Rather than reinventing the wheel, the UI layer was designed on top of existing AWS services, abstracting away their complexity and presenting them as a single, unified workflow.</p>
       </div>
     </div>
 
@@ -2041,8 +2041,8 @@
     </div>
 
     <div class="cs-body" style="max-width:720px;">
-      <p>The connected experience depended on seven product areas with separate roadmaps and competing resource commitments. Pursuing the full vision in one release would have made delivery dependent on all those teams moving together. Leaving each team to deliver independently risked recreating the fragmented experience we were trying to resolve.</p>
-      <p>I owned the release and worked with product and engineering leaders to deliver incrementally over three years. We started with a small proof of concept, established the shared platform, and expanded the experience as the underlying service capabilities became available.</p>
+      <p>The connected experience depended on seven product areas with separate roadmaps and competing resource commitments. <strong>Pursuing the full vision in one release would have made delivery dependent on all those teams moving together.</strong> Leaving each team to deliver independently risked recreating the fragmented experience we were trying to resolve.</p>
+      <p>I owned the release and worked with product and engineering leaders to deliver <strong>incrementally over three years</strong>. We started with a small proof of concept, established the shared platform, and expanded the experience as the underlying service capabilities became available.</p>
     </div>
 
     <div style="margin-top:48px; max-width:720px; display:flex; flex-direction:column; gap:40px;">
@@ -2053,7 +2053,7 @@
       <div>
         <h3>Milestone 2 — Release the foundation with initial use cases</h3>
         <p>Our first release combined the shell and platform with use cases including compliance and dashboarding. This established the shared experience while delivering functionality customers could use, without waiting for the entire seven-product vision to be complete.</p>
-        <p>The risk was choosing the wrong use cases — ones that weren't actually right for the market this early in the approach. We were confident in the direction, but confidence wasn't proof. We outlined every use case we could realistically cover, then tested willingness to pay directly with customers at the summits: we gave each person a fixed budget of 10 euros and asked them to put it toward the features they'd actually fund. Their choices gave us the confidence to move forward.</p>
+        <p>The risk was choosing the wrong use cases — ones that weren't actually right for the market this early in the approach. We were confident in the direction, but <strong>confidence wasn't proof</strong>. We outlined every use case we could realistically cover, then tested <span class="cs-highlight">willingness to pay directly with customers at the summits</span>: we gave each person a fixed budget of 10 euros and asked them to put it toward the features they'd actually fund. Their choices gave us the confidence to move forward.</p>
       </div>
       <div>
         <h3>Milestone 3 — Expand the connected experience</h3>
@@ -2061,7 +2061,7 @@
       </div>
       <div>
         <h3>Milestone 4 — Extend the platform to other teams</h3>
-        <p>I proposed compositional UI to reduce the frontend and design effort required for integration. Shared capabilities and guidelines gave other teams a way to contribute to the experience. Six AWS teams ultimately integrated their services.</p>
+        <p>I proposed <strong>compositional UI</strong> to reduce the frontend and design effort required for integration. Shared capabilities and guidelines gave other teams a way to contribute to the experience. <strong>Six AWS teams</strong> ultimately integrated their services.</p>
       </div>
     </div>
 
@@ -2093,20 +2093,20 @@
       <div class="cs-leadership-content">
         <h2>Leadership Responsibilities</h2>
         <ul class="cs-leadership-list">
-          <li>Set the vision and UX strategy for simplifying AWS operations into task-based, modular experiences.</li>
-          <li>Defined KPIs linking design outcomes to business metrics such as ARR growth, onboarding efficiency, and reduced support tickets.</li>
-          <li>Built and scaled the design organization — hiring designers, researchers, design technologists, and writers.</li>
-          <li>Led a tiger team to drive the discovery phase, define personas, map jobs-to-be-done, and deliver the first integrated prototypes.</li>
-          <li>Pitched the strategy to executives and GMs, securing buy-in and resources.</li>
+          <li><strong>Set the vision and UX strategy</strong> for simplifying AWS operations into task-based, modular experiences.</li>
+          <li><strong>Defined KPIs</strong> linking design outcomes to business metrics such as ARR growth, onboarding efficiency, and reduced support tickets.</li>
+          <li><strong>Built and scaled the design organization</strong> — hiring designers, researchers, design technologists, and writers.</li>
+          <li><strong>Led a tiger team</strong> to drive the discovery phase, define personas, map jobs-to-be-done, and deliver the first integrated prototypes.</li>
+          <li><strong>Pitched the strategy</strong> to executives and GMs, securing buy-in and resources.</li>
         </ul>
       </div>
     </div>
 
     <div class="cs-two-col top" style="gap: 96px;">
       <div class="cs-body">
-        <p>The product direction required sustained collaboration across more than 30 teams in nine organizational units. I worked across hiring, resourcing, career development, design processes, and product milestones.</p>
+        <p>The product direction required sustained collaboration across <strong>more than 30 teams in nine organizational units</strong>. I worked across hiring, resourcing, career development, design processes, and product milestones.</p>
         <p>Research gave teams a shared understanding of customer needs. Written strategy supported decisions about direction and investment. Prototypes made cross-service workflows concrete enough to discuss and develop together.</p>
-        <p>The organizational work and product work reinforced each other: connecting the experience required teams to understand how their decisions affected the wider journey.</p>
+        <p><strong>The organizational work and product work reinforced each other</strong>: connecting the experience required teams to understand how their decisions affected the wider journey.</p>
       </div>
     </div>
 
