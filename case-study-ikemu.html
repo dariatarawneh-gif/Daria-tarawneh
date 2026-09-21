@@ -75,17 +75,16 @@
       margin-bottom: 56px;
     }
     .cs-meta-bar {
-      display: flex;
-      gap: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 40px;
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 32px;
-      flex-wrap: wrap;
     }
     .cs-meta-cell {
-      padding-right: 40px;
-      min-width: 110px;
+      padding-right: 20px;
     }
-    .cs-meta-cell + .cs-meta-cell {
+    .cs-meta-cell:nth-child(2n) {
       border-left: 1px solid rgba(255,255,255,0.1);
       padding-left: 40px;
     }
@@ -393,6 +392,8 @@
     @media (max-width: 900px) {
       .ik-wrap { padding: 0 24px; }
       .cs-hero-content { padding: 120px 24px 56px; }
+      .cs-meta-bar { grid-template-columns: 1fr; gap: 20px; }
+      .cs-meta-cell:nth-child(2n) { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
       .ik-two-col, .ik-two-col.flip { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
       .ik-grid-2, .ik-grid-3, .ik-achievements { grid-template-columns: 1fr; }
       .ik-stats-inner { grid-template-columns: 1fr 1fr; }
@@ -442,7 +443,11 @@
     <div class="cs-hero-content">
       <div class="cs-hero-tag">Case study — Founder &amp; Head of Product</div>
       <h1>iKEMU<br>Games</h1>
-      <p class="cs-hero-sub">A marketplace turning branded mini-games into a measurable engagement channel. From founding idea to 50-person organisation operating across Asia and the Middle East.</p>
+      <div class="cs-hero-sub" style="max-width:660px;">
+        <p style="margin-bottom:16px;"><strong>The bet:</strong> Stop building one-off branded games for advertisers. Build a marketplace connecting brands with developers who already had HTML5 games, then take it to Japan instead of staying in New Zealand's smaller market.</p>
+        <p style="margin-bottom:16px;"><strong>What it cost:</strong> With limited funding, delivery went to outside partners chosen by tender across India, the Philippines, Russia and Jordan. I also had to build a local operation in Japan and change how I briefed teams.</p>
+        <p><strong>The result:</strong> On the KFC Japan campaign alone: 854,454 plays, 1.1M Twitter reach, and 106% of the annual store sales target. The company was later sold and rebranded as Gamify.</p>
+      </div>
       <div class="cs-meta-bar">
         <div class="cs-meta-cell">
           <div class="label">Role</div>
@@ -459,6 +464,14 @@
         <div class="cs-meta-cell">
           <div class="label">Focus</div>
           <div class="value">Platform design · Product strategy · 0→1</div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="label">Co-founders</div>
+          <div class="value">Two, with business and advertising backgrounds</div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="label">Had to convince</div>
+          <div class="value">Brands such as KFC and Kao, and funders (I contributed to our fundraising)</div>
         </div>
       </div>
     </div>
