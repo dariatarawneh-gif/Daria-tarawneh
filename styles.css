@@ -239,12 +239,12 @@ nav {
 
 .hero-eyebrow {
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--grey-200);
-  margin: 0 0 40px;
+  margin: 0 0 20px;
   text-align: center;
 }
 
