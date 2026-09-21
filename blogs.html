@@ -110,11 +110,14 @@
       <h2>Like what you see? There's more.</h2>
       <p>Get monthly inspiration, blog updates, and creative process notes, handcrafted for fellow creators.</p>
     </div>
-    <form class="subscribe-form" onsubmit="return false;">
+    <form class="subscribe-form" id="subscribe-form">
       <label for="subscribe-email" class="sr-only">Email address</label>
-      <input id="subscribe-email" type="email" placeholder="your@email.com" aria-label="Email address">
+      <input id="subscribe-email" name="email" type="email" placeholder="your@email.com" aria-label="Email address" required>
+      <input type="hidden" name="_subject" value="New newsletter subscriber">
+      <input type="hidden" name="form_source" value="Blog newsletter signup">
       <button type="submit">Subscribe</button>
     </form>
+    <div class="form-message" id="subscribe-msg" style="margin-top:12px;"></div>
   </div>
 </div>
 
@@ -158,6 +161,40 @@ if (hamburger && drawer) {
 }
 </script>
 <script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+<script>
+(function() {
+  var form = document.getElementById('subscribe-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var msg = document.getElementById('subscribe-msg');
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    var data = new FormData(form);
+    fetch('https://formspree.io/f/mwlpopov', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(r) {
+      if (r.ok) {
+        msg.className = 'form-message success';
+        msg.textContent = 'Thanks for subscribing!';
+        form.reset();
+      } else {
+        msg.className = 'form-message error';
+        msg.textContent = 'Something went wrong. Please try again.';
+      }
+    }).catch(function() {
+      msg.className = 'form-message error';
+      msg.textContent = 'Could not send. Please check your connection and try again.';
+    }).finally(function() {
+      btn.disabled = false;
+      btn.textContent = 'Subscribe';
+    });
+  });
+})();
+</script>
 <script src="cms.js"></script>
 </body>
 </html>
