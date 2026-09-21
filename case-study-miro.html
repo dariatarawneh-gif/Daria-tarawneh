@@ -71,17 +71,16 @@
       margin-bottom: 56px;
     }
     .cs-meta-bar {
-      display: flex;
-      gap: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 40px;
       border-top: 1px solid rgba(255,255,255,0.1);
       padding-top: 32px;
-      flex-wrap: wrap;
     }
     .cs-meta-cell {
-      padding-right: 40px;
-      min-width: 110px;
+      padding-right: 20px;
     }
-    .cs-meta-cell + .cs-meta-cell {
+    .cs-meta-cell:nth-child(2n) {
       border-left: 1px solid rgba(255,255,255,0.1);
       padding-left: 40px;
     }
@@ -615,8 +614,8 @@
     @media (max-width: 600px) {
       .cs-impact-mosaic { grid-template-columns: 1fr; }
       .ag-root { height: 260px; }
-      .cs-meta-bar { flex-direction: column; gap: 20px; }
-      .cs-meta-cell + .cs-meta-cell { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+      .cs-meta-bar { grid-template-columns: 1fr; gap: 20px; }
+      .cs-meta-cell:nth-child(2n) { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
     }
   </style>
 </head>
