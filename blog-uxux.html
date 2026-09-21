@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mastering UI/UX Design - Daria Tarawneh</title>
+  <title>The Work Between Products Needs an Owner - Daria Tarawneh</title>
   <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
   <link rel="apple-touch-icon" href="public/apple-touch-icon.png">
@@ -45,18 +45,71 @@
         <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);">Resources</span>
         <span style="font-size:13px;color:var(--grey-150);">Mar 30, 2025</span>
       </div>
-      <h1 style="font-family:'Antonio',sans-serif;font-weight:700;font-size:clamp(48px,6vw,80px);text-transform:uppercase;color:var(--grey-200);line-height:0.95;letter-spacing:-1px;margin-bottom:32px;">Mastering UI/UX Design: Key Principles for Success</h1>
-      <p style="max-width:680px;">Explore the foundational principles of UI/UX design that create seamless and enjoyable experiences for users.</p>
+      <h1 style="font-family:'Antonio',sans-serif;font-weight:700;font-size:clamp(48px,6vw,80px);text-transform:uppercase;color:var(--grey-200);line-height:0.95;letter-spacing:-1px;margin-bottom:32px;">The Work Between Products Needs an Owner</h1>
+      <p style="max-width:680px;">At AWS, I led the experience across seven product areas that customers needed to use together. Each service had its own team, roadmap, and technical model. Customers had to make those separate decisions work as one environment.</p>
     </div>
     <div class="article-body">
-      <h2>User-Centricity: Designing for Real People</h2>
-      <p>At the heart of successful UI/UX design is a deep understanding of the user. User-centricity means placing the needs, preferences, and behaviors of actual users at the center of every design decision. This approach begins with thorough research to uncover user pain points and motivations, followed by continuous testing and iteration to refine solutions.</p>
-      <h2>Consistency and Simplicity</h2>
-      <p>Consistency is a cornerstone of effective UI/UX design. When visual elements, navigation patterns, and interactions remain uniform across a product, users can quickly learn how to use it without confusion. Simplicity further enhances usability by stripping away unnecessary complexity and presenting information in a clear, straightforward manner.</p>
-      <h2>Visual Hierarchy and Clarity</h2>
-      <p>A well-structured visual hierarchy is crucial for guiding users through content and features. By manipulating size, color, spacing, and contrast, designers can emphasize the most important elements and create a logical flow of information. Clarity ensures that every interface component communicates its purpose effectively.</p>
-      <h2>Embracing Innovation and Micro-Interactions</h2>
-      <p>As design trends evolve, mastering new technologies and interaction patterns becomes vital. AI-driven personalization, immersive AR/VR experiences, and voice or gesture interfaces are reshaping the future of UI/UX. Micro-interactions — those subtle animations and feedback cues — add delight and clarity, making interfaces feel more dynamic and engaging.</p>
+      <p>Before they could operate effectively, they needed to read documentation, research best practices, configure services across accounts and Regions, and understand how the pieces connected. Powerful individual capabilities did not automatically add up to an understandable experience.</p>
+      <p>One piece of customer feedback captured the problem particularly well:</p>
+      <blockquote style="border-left:3px solid var(--red);padding-left:24px;margin:32px 0;font-style:italic;font-size:19px;line-height:1.6;color:var(--grey-200);">"AWS keeps shipping their organisational structure and we suffer."</blockquote>
+      <p>That observation raised a question that became central to my work: who was responsible for the experience between the services?</p>
+
+      <h2>Proposing a connected experience</h2>
+      <p>I proposed what we called consumer-grade enterprise UX. The ambition was to make complex infrastructure easier to operate without requiring customers to become experts in every underlying service before they could begin.</p>
+      <p>Customers would start with what they wanted to accomplish. The product would bring recommended configurations and best practices into the setup experience. Once running, they would have a connected place to group resources, understand their state, and take action.</p>
+      <p>I wrote the strategy document and shared it with management. We secured funding for a small team to build a proof of concept.</p>
+      <p>To inform the direction, I commissioned external research and spoke directly with customers at re:Invent in Las Vegas and the AWS Summit in New York. Their feedback reinforced the burden of learning and connecting the services.</p>
+      <p>The proposal developed into the Systems Manager cockpit strategy: one place to group resources, view insights, and act. I presented the work to leadership, and Andy Jassy, then CEO of AWS, approved the direction.</p>
+      <p>Approval gave us support for the strategy. Delivering it required commitments across the organization.</p>
+
+      <h2>A shared vision still competes with seven roadmaps</h2>
+      <p>The strongest objections were about resources and prioritization.</p>
+      <p>Seven product teams had existing commitments. Our connected experience required them to dedicate capacity to capabilities whose value extended beyond their individual services. We also needed to assemble a team responsible for the experience across those boundaries.</p>
+      <p>From a service team's perspective, this was a real trade-off. Work supporting a cross-service journey competed with work already planned for its own customers and roadmap.</p>
+      <p>I had to make the case in terms of both customer effort and commercial opportunity. Easier setup could shorten the path to using the underlying services. The time customers spent learning, researching, and configuring was also time before they could get value from those services.</p>
+      <p>That was the commercial rationale. It was not, by itself, evidence of a measured revenue increase.</p>
+      <p>Customer research and the setup-time opportunity helped us resolve the resource disagreement. I worked with my GM and engineering leaders to influence the seven roadmaps and secure a dedicated team focused on the connected customer experience.</p>
+      <p>The work included underlying capabilities for discovering resources, surfacing information, and connecting workflows. A coherent interface depended on those service-level decisions.</p>
+
+      <h2>Giving the journey a team</h2>
+      <p>I owned the end-to-end experience and release. Product managers, designers, and design technologists reported to me, and I partnered directly with the engineering manager.</p>
+      <p>That structure gave us a team responsible for the connected experience while we continued to work with the service teams on the capabilities it required.</p>
+      <p>The distinction mattered. A cross-product vision can be broadly supported and still lose priority whenever an individual team faces a delivery conflict. Someone needs the responsibility and capacity to keep the whole journey moving.</p>
+      <p>My role included prioritizing the roadmap, bringing in external research and consultancy support, and working through dependencies with the teams involved.</p>
+      <p>We were asking the organization to consider a different unit of progress. Shipping another feature in one service did not necessarily make the customer's overall task easier. We needed to examine whether the work helped someone set up an environment, find the relevant context, investigate an issue, or act on it.</p>
+      <p>Those activities gave us a shared direction across products with different technical models.</p>
+
+      <h2>Releasing a foundation before the full vision</h2>
+      <p>We delivered incrementally over three years.</p>
+      <p>The first release included the shell, the platform, and initial use cases such as compliance and dashboarding. This gave us a foundation and usable capabilities without waiting for every part of the broader strategy to be complete.</p>
+      <p>Further releases expanded the connected experience. Quick Setup addressed a particularly demanding part of the journey: the work customers had to do before they could start.</p>
+      <p>Previously, customers needed to research configurations and best practices themselves. Quick Setup brought that guidance into the product through recommended setups. Customers could choose what they wanted to accomplish and where to apply it, with advanced configuration available for more specialized requirements.</p>
+      <p>That decision was about how much knowledge the product should require upfront. We wanted customers to benefit from recommended practices without first having to reconstruct them from documentation.</p>
+      <p>Throughout delivery, I conducted design reviews to assess UX quality as the experience expanded. Incremental releases made the strategy deliverable, but they also required sustained attention to how each addition fitted into the whole.</p>
+
+      <h2>Making participation easier for other teams</h2>
+      <p>A connected experience can become expensive to extend if each new integration requires a separate frontend implementation and dedicated design effort.</p>
+      <p>I proposed a compositional UI approach to make it easier and faster for other teams to integrate. Shared guidelines, platform capabilities, and reusable interface elements gave teams a way to contribute without starting again each time.</p>
+      <p>This addressed the internal adoption problem alongside the customer one.</p>
+      <p>We were asking teams to participate in a shared experience. Reducing the effort of participation made that request more practical. The platform could offer a route for their capabilities to reach customers, with less duplicated frontend and design work.</p>
+      <p>Six AWS teams ultimately integrated their services.</p>
+      <p>For me, that was an important outcome of the platform decision. The work had developed beyond a single team delivering a connected interface. Other teams could extend it.</p>
+
+      <h2>What scale required from leadership</h2>
+      <p>The scope covered seven product areas and involved more than 30 teams across nine organizational units. Those numbers describe the setting, but they do not explain the difficult part.</p>
+      <p>The difficult part was aligning decisions made at different levels.</p>
+      <p>Leadership had to support the investment. Service teams had to commit capacity. The dedicated team needed a deliverable roadmap. The platform needed to make integration practical. Customers needed a useful experience before the full vision was complete.</p>
+      <p>My responsibility was to keep those decisions connected.</p>
+      <p>That required different forms of evidence and communication: research to understand the customer burden, written strategy to establish direction, prototypes to make the proposal tangible, and ongoing prioritization to turn support into delivery.</p>
+      <p>No single presentation resolved all of it. Owning the release meant staying with the work as the strategy encountered dependencies, resource constraints, and quality decisions over three years.</p>
+
+      <h2>Where I now look for the problem</h2>
+      <p>This experience shaped how I assess a fragmented product portfolio.</p>
+      <p>I look at the steps customers perform between products: the context they reconstruct, the configuration they repeat, the documentation they consult, and the decisions they must make without guidance.</p>
+      <p>Then I look at how those steps are owned internally.</p>
+      <p>If the customer's task crosses five teams but every roadmap stops at a product boundary, the gaps are unlikely to disappear through local improvements alone. The work needs an owner, capacity, and a way for teams to contribute.</p>
+      <p>At AWS, that meant a connected product strategy, a dedicated team, phased delivery, and a platform other teams could extend.</p>
+      <p>The individual services remained powerful building blocks. Our responsibility was to make it easier for customers to put them to work.</p>
     </div>
     <div style="margin-top:80px;padding-top:48px;border-top:1px solid var(--grey-100);">
       <a href="blogs.html" class="browse-link">← Back to all insights</a>
