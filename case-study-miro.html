@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Enterprise Trust at Miro - Daria Tarawneh</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cs-page { background: var(--white); }
+
+    /* ── HERO ── */
+    .cs-hero {
+      position: relative;
+      background: var(--grey-200);
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
+      overflow: hidden;
+    }
+    .cs-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.28;
+    }
+    .cs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--grey-200) 0%, rgba(20,20,20,0.72) 50%, rgba(20,20,20,0.55) 100%);
+    }
+    .cs-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 48px 72px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .cs-hero-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+    .cs-hero h1 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(56px, 8vw, 120px);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 0.93;
+      letter-spacing: -3px;
+      margin-bottom: 40px;
+      max-width: 1000px;
+    }
+    .cs-hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+    .cs-meta-bar {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-cell {
+      padding-right: 40px;
+      min-width: 110px;
+    }
+    .cs-meta-cell + .cs-meta-cell {
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 40px;
+    }
+    .cs-meta-cell .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 5px;
+    }
+    .cs-meta-cell .value {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── TICKER ── */
+    .cs-ticker {
+      background: var(--red);
+      overflow: hidden;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .cs-ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 24s linear infinite;
+    }
+    .cs-ticker-track span {
+      font-family: 'Antonio', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.9);
+      padding: 0 44px;
+    }
+    .cs-ticker-track span.dot {
+      color: rgba(255,255,255,0.35);
+      padding: 0 2px;
+      font-size: 10px;
+      letter-spacing: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── CHAPTER MARKER ── */
+    .cs-chapter {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 140px 0 0;
+      border-top: 1px solid var(--grey-100);
+      margin-bottom: 56px;
+    }
+    .cs-chapter.no-border { border-top: none; padding-top: 0; }
+    .cs-chapter-num {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: 88px;
+      line-height: 0.85;
+      color: var(--grey-100);
+      letter-spacing: -4px;
+      user-select: none;
+      text-align: right;
+    }
+    .cs-chapter-head h2 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.5vw, 48px);
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+    .cs-chapter-head .sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-150);
+    }
+    .cs-dark-wrap .cs-chapter { border-top-color: rgba(255,255,255,0.1); }
+    .cs-dark-wrap .cs-chapter-num { color: rgba(255,255,255,0.1); }
+    .cs-dark-wrap .cs-chapter-head h2 { color: #fff; }
+    .cs-dark-wrap .cs-chapter-head .sub { color: rgba(255,255,255,0.65); }
+
+    /* ── SECTION BG ── */
+    .cs-bg-white { background: var(--white); }
+    .cs-bg-light { background: var(--bg); }
+    .cs-dark-wrap { background: var(--grey-200); }
+
+    /* ── PADDING ── */
+    .cs-pad { padding: 0 0 100px; }
+
+    /* ── BODY TEXT ── */
+    .cs-body p {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .cs-body p:last-child { margin-bottom: 0; }
+    .cs-body-light p { color: rgba(255,255,255,0.75); }
+
+    /* ── LAYOUTS ── */
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .cs-two-col.top { align-items: start; }
+    .cs-two-col.rev { direction: rtl; }
+    .cs-two-col.rev > * { direction: ltr; }
+    .cs-col-60-40 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ── MEDIA ── */
+    .cs-media {
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .cs-media img, .cs-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .cs-media.tall { aspect-ratio: 16/9; }
+    .cs-media.wide { aspect-ratio: 16/7; }
+    .cs-media.cinema { aspect-ratio: 21/9; }
+    .cs-media.free { aspect-ratio: 16/9; height: auto; }
+    .cs-media.free-lg { aspect-ratio: 16/9; height: auto; }
+
+    /* ── LAYER STACK ── */
+    .cs-stack {
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cs-stack-row {
+      padding: 18px 28px;
+      font-family: 'Antonio', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cs-stack-row:nth-child(1) { background: #1e1e1e; color: #fff; }
+    .cs-stack-row:nth-child(2) { background: #2c2c2c; color: rgba(255,255,255,0.85); }
+    .cs-stack-row:nth-child(3) { background: #3a3a3a; color: rgba(255,255,255,0.8); }
+    .cs-stack-row:nth-child(4) { background: #484848; color: rgba(255,255,255,0.75); }
+    .cs-stack-row:nth-child(5) { background: #565656; color: rgba(255,255,255,0.7); }
+    .cs-stack-row:nth-child(6) { background: var(--red); color: #fff; }
+    .cs-stack-row .arr { opacity: 0.3; }
+
+    /* ── PULL QUOTE ── */
+    .cs-quote {
+      padding: 56px 0;
+      border-top: 1px solid var(--grey-100);
+      border-bottom: 1px solid var(--grey-100);
+      margin: 64px 0;
+    }
+    .cs-quote blockquote {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(24px, 3.5vw, 44px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      max-width: 900px;
+    }
+    .cs-quote.red blockquote { color: var(--red); }
+    .cs-quote.inv { border-top-color: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.1); }
+    .cs-quote.inv blockquote { color: #fff; }
+
+    /* ── INLINE STAT ── */
+    .cs-inline-stat {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--red);
+      line-height: 1.2;
+      margin-top: 32px;
+    }
+
+    /* ── SHIFT BOX ── */
+    .cs-shift-box {
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    .cs-shift-box .box-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    .cs-shift-box .box-body {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.2;
+    }
+
+    /* ── ACCORDION GALLERY ── */
+    /* ── ACCORDION GALLERY ── */
+    .ag-shell {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .ag-detail {
+      flex: 0 0 360px;
+      width: 360px;
+      border-radius: 18px;
+      padding: 28px;
+      background: #F5F5F5;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      box-sizing: border-box;
+      order: -1;
+      margin-right: 20px;
+      animation: ag-detail-in 320ms cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes ag-detail-in {
+      from { opacity: 0; transform: translateX(-18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .ag-detail-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6B6B6B;
+      margin-bottom: 16px;
+    }
+    .ag-detail-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      color: #6B6B6B;
+      cursor: pointer;
+      padding: 0;
+      float: right;
+      margin-top: -4px;
+    }
+    .ag-detail-title {
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 600;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: #111;
+      margin-bottom: 20px;
+    }
+    .ag-detail-fields { display: grid; gap: 16px; }
+    .ag-detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6B6B6B;
+      margin-bottom: 5px;
+    }
+    .ag-detail-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: #111;
+    }
+    .ag-hint {
+      position: absolute;
+      top: 14px; left: 14px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      pointer-events: none;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+    .ag-panel:hover .ag-hint,
+    .ag-panel:focus-visible .ag-hint { opacity: 1; transform: translateY(0); }
+    .ag-root {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      width: 100%;
+      height: 480px;
+      perspective: 1400px;
+      perspective-origin: 50% 50%;
+    }
+    .ag-panel {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+      background: #0a0713;
+      box-shadow: 0 10px 30px -18px rgba(0,0,0,.8);
+      transition: flex-grow 0.55s cubic-bezier(0.76,0,0.24,1), transform 0.55s cubic-bezier(0.76,0,0.24,1);
+      transform-style: preserve-3d;
+      transform-origin: center center;
+      outline: none;
+    }
+    .ag-panel:focus-visible { box-shadow: 0 0 0 2px #fff; }
+    .ag-panel.active { flex-grow: 4.2; }
+    .ag-panel:not(.active) { transform: rotateY(8deg); }
+    .ag-panel:not(.active).before { transform: rotateY(8deg); }
+    .ag-panel:not(.active).after { transform: rotateY(-8deg); }
+    .ag-frame {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+    .ag-media {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      transform: translate(-50%, -50%);
+      transition: filter 0.55s cubic-bezier(0.76,0,0.24,1), width 0.55s cubic-bezier(0.76,0,0.24,1);
+    }
+    .ag-media video, .ag-media img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .ag-panel:not(.active) .ag-media { filter: grayscale(1); }
+    .ag-gradient {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 45%, #060010 100%);
+      opacity: 0.82;
+    }
+    .ag-dim {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: #060010;
+      opacity: 0;
+      transition: opacity 0.55s cubic-bezier(0.76,0,0.24,1);
+    }
+    .ag-panel:not(.active) .ag-dim { opacity: 0.38; }
+    .ag-caption {
+      position: absolute;
+      left: 20px; right: 20px; bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+    }
+    .ag-panel.active .ag-caption { opacity: 1; transform: translateX(0); }
+    .ag-bar {
+      flex: 0 0 auto;
+      width: 3px;
+      height: 24px;
+      border-radius: 3px;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(255,255,255,0.6);
+    }
+    .ag-label {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    }
+
+    /* ── SHIPPED LIST ── */
+    .cs-shipped-list { margin-top: 56px; }
+    .cs-shipped-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      align-items: baseline;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--grey-100);
+    }
+    .cs-shipped-item:first-child { border-top: 1px solid var(--grey-100); }
+    .cs-shipped-item .snum {
+      font-family: 'Antonio', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--grey-150);
+    }
+    .cs-shipped-item h4 {
+      font-family: 'Antonio', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.3px;
+    }
+    .cs-shipped-item p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-150);
+      line-height: 1.55;
+      margin-top: 4px;
+    }
+    .cs-shipped-item .stag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-150);
+      white-space: nowrap;
+      padding-top: 4px;
+    }
+
+    /* ── IMPACT MOSAIC ── */
+    .cs-impact-mosaic {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+      margin-top: 56px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .cs-impact-cell {
+      background: rgba(255,255,255,0.05);
+      padding: 44px 40px;
+    }
+    .cs-impact-cell.featured {
+      grid-row: span 2;
+      background: var(--red);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 52px 48px;
+    }
+    .cs-impact-cell .num {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: 60px;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .cs-impact-cell.featured .num { font-size: 88px; }
+    .cs-impact-cell .desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+    }
+    .cs-impact-cell.featured .desc { color: #fff; font-size: 16px; }
+
+    /* ── BACK ── */
+    .cs-back-section { background: var(--grey-200); padding: 72px 0; }
+    .cs-back-link {
+      font-family: 'Antonio', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cs-back-link:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .cs-two-col, .cs-col-60-40 { grid-template-columns: 1fr; gap: 48px; }
+      .cs-two-col.rev { direction: ltr; }
+      .cs-chapter { grid-template-columns: 1fr; }
+      .cs-chapter-num { font-size: 56px; text-align: left; }
+      .cs-impact-mosaic { grid-template-columns: 1fr 1fr; }
+      .cs-impact-cell.featured { grid-row: span 1; }
+      .cs-shipped-item { grid-template-columns: 40px 1fr; }
+      .cs-shipped-item .stag { display: none; }
+      .ag-root { height: 340px; }
+      .cs-hero h1 { letter-spacing: -1px; }
+      .cs-hero-content { padding: 0 32px 56px; }
+    }
+    @media (max-width: 600px) {
+      .cs-impact-mosaic { grid-template-columns: 1fr; }
+      .ag-root { height: 260px; }
+      .cs-meta-bar { flex-direction: column; gap: 20px; }
+      .cs-meta-cell + .cs-meta-cell { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    }
+  </style>
+</head>
+<body class="cs-page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><picture><source type="image/avif" srcset="public/daria-hero.avif"><img src="public/daria-hero.jpg" alt="Daria Tarawneh"></picture></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<main id="main-content">
+
+<!-- ══ HERO ══ -->
+<div class="cs-hero">
+  <video class="cs-hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="public/hero.mp4" type="video/mp4">
+  </video>
+  <div class="cs-hero-overlay"></div>
+  <div class="cs-hero-content">
+    <div class="cs-hero-tag">AI Governance &nbsp;&middot;&nbsp; Security &nbsp;&middot;&nbsp; Design Leadership</div>
+    <h1>Building<br>Enterprise<br>Trust at Miro</h1>
+    <p class="cs-hero-sub">The enterprise foundation beneath a $17B collaboration platform: architecture, governance, and the design organization built to deliver both.</p>
+    <div class="cs-meta-bar">
+      <div class="cs-meta-cell">
+        <div class="label">Company</div>
+        <div class="value">Miro</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Role</div>
+        <div class="value">Head of Design, Enterprise</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Period</div>
+        <div class="value">2022–2025</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Scale</div>
+        <div class="value">20 designers · 40 features</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="cs-ticker" aria-hidden="true">
+  <div class="cs-ticker-track">
+    <span>Security</span><span class="dot">·</span>
+    <span>Compliance</span><span class="dot">·</span>
+    <span>AI Governance</span><span class="dot">·</span>
+    <span>Data Residency</span><span class="dot">·</span>
+    <span>Enterprise Guard</span><span class="dot">·</span>
+    <span>Admin Insights</span><span class="dot">·</span>
+    <span>Permissions</span><span class="dot">·</span>
+    <span>Custom Roles</span><span class="dot">·</span>
+    <span>Lifecycle Management</span><span class="dot">·</span>
+    <span>Multi-Region</span><span class="dot">·</span>
+    <span>Security</span><span class="dot">·</span>
+    <span>Compliance</span><span class="dot">·</span>
+    <span>AI Governance</span><span class="dot">·</span>
+    <span>Data Residency</span><span class="dot">·</span>
+    <span>Enterprise Guard</span><span class="dot">·</span>
+    <span>Admin Insights</span><span class="dot">·</span>
+    <span>Permissions</span><span class="dot">·</span>
+    <span>Custom Roles</span><span class="dot">·</span>
+    <span>Lifecycle Management</span><span class="dot">·</span>
+    <span>Multi-Region</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ══ CONTEXT ══ -->
+<div class="cs-bg-white">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter no-border">
+        <div class="cs-chapter-num">00</div>
+        <div class="cs-chapter-head">
+          <h2>The Canvas Is Only the Surface</h2>
+          <p class="sub">Why enterprise couldn't just be more of the same product</p>
+        </div>
+      </div>
+
+      <div class="cs-col-60-40" style="margin-bottom:64px;">
+        <div class="cs-body">
+          <p>Miro's rapid growth brought a new class of customer. Smaller teams could adopt the product with very little administration. Large enterprises could not. They needed to manage thousands of users and teams, delegate administration, control access, understand adoption, meet security and compliance requirements, manage data across regions, and introduce new capabilities without increasing organizational risk.</p>
+          <p>Miro already had enterprise functionality, but it had grown feature by feature around a product originally optimized for teams. The challenge was no longer adding individual enterprise features. It was turning them into a system.</p>
+        </div>
+        <div class="cs-stack">
+          <div class="cs-stack-row"><span>Collaboration Surface</span><span class="arr">&#8594;</span></div>
+          <div class="cs-stack-row"><span>Enterprise Administration</span><span class="arr">&#8594;</span></div>
+          <div class="cs-stack-row"><span>Permissions &amp; Authorization</span><span class="arr">&#8594;</span></div>
+          <div class="cs-stack-row"><span>Security</span><span class="arr">&#8594;</span></div>
+          <div class="cs-stack-row"><span>Compliance &amp; Data Governance</span><span class="arr">&#8594;</span></div>
+          <div class="cs-stack-row"><span>AI Governance</span><span class="arr">&#8594;</span></div>
+        </div>
+      </div>
+
+      <div class="cs-media free-lg">
+        <picture><source type="image/avif" srcset="public/admin-dashboard.avif"><img src="public/admin-dashboard.jpg" alt="Miro enterprise admin dashboard"></picture>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRANSFORMATION 1 ══ -->
+<div class="cs-bg-light">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">01</div>
+        <div class="cs-chapter-head">
+          <h2>Build the Enterprise Foundation</h2>
+          <p class="sub">From fragmented functionality to one coherent system</p>
+        </div>
+      </div>
+
+      <div class="cs-two-col top" style="margin-bottom:64px;">
+        <div class="cs-body">
+          <p>Miro had grown feature by feature for years, with no shared structure underneath. Users, admins, organizations, roles, permissions, security, settings, each had evolved on its own logic, shipped independently, without a system connecting them. The problem wasn't the UI. It was a missing mental model of what "enterprise" meant at Miro.</p>
+          <p>I led the work to define one: mapping the real relationships between every entity in the system, and validating that model against how existing customers actually understood and organized their own setups. This wasn't an information architecture exercise. It was a structural overhaul of how enterprise worked at Miro, end to end.</p>
+        </div>
+        <div class="cs-body">
+          <p>That model exposed the gap between what existed and what enterprise customers actually needed, and became the backlog for the org for the next several years. We divided the work into end-to-end journeys, sequenced by usage and ROI, and scoped the first phase to one year.</p>
+          <p>To deliver on that timeline, I built out the design team and helped stand up an engineering org focused specifically on end-to-end customer experience, rather than isolated features.</p>
+        </div>
+      </div>
+
+      <div class="cs-media free" style="margin-bottom:64px;">
+        <img src="public/entity-diagram.webp" alt="Entity model diagram - mapping enterprise relationships">
+      </div>
+
+      <div class="cs-quote">
+        <blockquote>Cohesion over consistency. Does it behave like Miro? Is the mental model aligned? Visual inconsistency could wait. Contradictory behavior couldn't.</blockquote>
+      </div>
+
+      <div class="cs-two-col">
+        <div class="cs-media tall">
+          <picture><source type="image/avif" srcset="public/admin-panel.avif"><img src="public/admin-panel.jpg" alt="Admin control panel - first version"></picture>
+        </div>
+        <div class="cs-body">
+          <p>The other output of this phase was the control layer itself: the first system giving enterprise admins visibility across users, teams, activity, and adoption. It was built on granular authorization, designed to answer one question at any scope: <strong>who can do what, and where?</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRANSFORMATION 2 ══ -->
+<div class="cs-bg-white">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">02</div>
+        <div class="cs-chapter-head">
+          <h2>Turn Requirement Into Growth Lever</h2>
+          <p class="sub">From prerequisite to business value</p>
+        </div>
+      </div>
+
+      <div class="cs-two-col rev top" style="margin-bottom:64px;">
+        <div class="cs-media tall">
+          <picture><source type="image/avif" srcset="public/admin-dashboard.avif"><img src="public/admin-dashboard.jpg" alt="Admin dashboard - adoption trends"></picture>
+        </div>
+        <div class="cs-body">
+          <p>Once the foundation held, the mandate changed: turn administration from a cost of doing enterprise business into a lever for growing it. Admins, internally nicknamed "Miro Heroes", stopped being an afterthought and became the audience whose adoption decisions determined whether an account expanded.</p>
+          <p>The admin surface became a sales channel. The enterprise dashboard and invitation workflows became where admins saw adoption trends, discovered new features, and understood what Enterprise unlocked. Giving admins visibility into usage patterns, anomaly detection, and early threat signals turned out to be the strongest upgrade driver we had.</p>
+          <div class="cs-inline-stat">A/B testing on admin surfaces lifted enterprise conversion 30%.</div>
+        </div>
+      </div>
+
+      <div class="cs-quote red">
+        <blockquote>Enterprise scale is not simply more users. It is more contexts, more policies, and more constraints.</blockquote>
+      </div>
+
+      <div class="cs-two-col top" style="margin-top:64px;">
+        <div class="cs-body">
+          <p>Entering Japan meant rebuilding infrastructure, not just localizing UI. I spent a week in Tokyo working directly with the Japanese team, customers, and end users to understand what data residency actually required: storing data in Japan-based warehouses without breaking the real-time collaboration that makes Miro work.</p>
+          <p>Trust became a paid feature, not a compliance checkbox. Enterprises were adding confidential IP directly onto their boards, and were willing to pay a 30% premium to know it was protected. Resolving the freedom vs. control tension took six months and shipped as <strong>Enterprise Guard</strong>.</p>
+        </div>
+        <div class="cs-media tall">
+          <picture><source type="image/avif" srcset="public/japan.avif"><img src="public/japan.jpg" alt="Miro Japan - team visit and data residency work"></picture>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRANSFORMATION 3 - AI ══ -->
+<div class="cs-dark-wrap">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">03</div>
+        <div class="cs-chapter-head">
+          <h2>AI Changed What Control Meant</h2>
+          <p class="sub">When the model changes, the rules change with it</p>
+        </div>
+      </div>
+
+      <div class="cs-two-col top" style="margin-bottom:56px;">
+        <div class="cs-body cs-body-light">
+          <p>When the AI wave hit, enterprise adoption lagged expectations, not because customers didn't want AI, but because AI didn't arrive as an isolated feature. It cut through every layer we'd already built: permissions, administration, security, compliance, governance, and the collaboration experience itself.</p>
+          <p>The architecture we'd designed for "who can access this content?" was not the right architecture for "what can intelligence do with this content?" Every system had to be rethought.</p>
+        </div>
+        <div class="cs-shift-box">
+          <div class="box-label">The shift</div>
+          <div class="box-body">From "who can access this content?" to "what can intelligence do with this content?"</div>
+        </div>
+      </div>
+
+      <!-- Accordion Gallery - 3 AI videos -->
+      <div class="ag-shell" id="ag-shell">
+        <!-- Detail panel - hidden until a panel is clicked -->
+
+        <div class="ag-root" id="ag-ai" role="list" aria-label="AI governance work examples">
+          <div class="ag-panel active" tabindex="0" role="listitem" aria-label="AI Adoption Controls" data-idx="0"
+               data-eyebrow="01 / AI Governance"
+               data-title="AI Adoption Controls"
+               data-problem="Helping organizations evaluate risk, configure access, and govern usage at a granular level, including control over exactly which content could or couldn't be ingested by the model."
+               data-role="Led the design direction for AI governance journeys, working across security, permissions and product teams."
+               data-decision="Treated AI adoption as a governance problem first, giving admins the controls they needed to feel safe before any feature would be trusted.">
+            <div class="ag-frame">
+              <div class="ag-media">
+                <video autoplay muted loop playsinline preload="auto">
+                  <source src="public/ai-1.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="ag-gradient"></div>
+              <div class="ag-dim"></div>
+            </div>
+            <div class="ag-hint">Click to see details</div>
+            <div class="ag-caption">
+              <div class="ag-bar"></div>
+              <div class="ag-label">AI Adoption Controls</div>
+            </div>
+          </div>
+          <div class="ag-panel" tabindex="0" role="listitem" aria-label="AI Security Controls" data-idx="1"
+               data-eyebrow="02 / AI Governance"
+               data-title="AI Security Controls"
+               data-problem="Security settings were powerful but hard to navigate, making it harder for enterprise customers to adopt AI with confidence."
+               data-role="Shaped the design vision for making AI security capabilities feel trustworthy, explainable, and operationally clear."
+               data-decision="Connected security actions to clearer context and outcomes rather than presenting them as a flat list of controls.">
+            <div class="ag-frame">
+              <div class="ag-media">
+                <video autoplay muted loop playsinline preload="auto">
+                  <source src="public/ai-2.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="ag-gradient"></div>
+              <div class="ag-dim"></div>
+            </div>
+            <div class="ag-hint">Click to see details</div>
+            <div class="ag-caption">
+              <div class="ag-bar"></div>
+              <div class="ag-label">AI Security Controls</div>
+            </div>
+          </div>
+          <div class="ag-panel" tabindex="0" role="listitem" aria-label="AI Governance Settings" data-idx="2"
+               data-eyebrow="03 / AI Governance"
+               data-title="AI Governance Settings"
+               data-problem="As AI capabilities expanded, enterprises needed confidence, oversight, and governance built into the experience itself."
+               data-role="Defined the design direction for enterprise trust and governance across AI-related admin journeys."
+               data-decision="Designed governance as part of the broader admin ecosystem, not an add-on, but a natural layer of enterprise control.">
+            <div class="ag-frame">
+              <div class="ag-media">
+                <video autoplay muted loop playsinline preload="auto">
+                  <source src="public/ai-3.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="ag-gradient"></div>
+              <div class="ag-dim"></div>
+            </div>
+            <div class="ag-hint">Click to see details</div>
+            <div class="ag-caption">
+              <div class="ag-bar"></div>
+              <div class="ag-label">AI Governance Settings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-quote inv" style="margin-top:64px;">
+        <blockquote>Customers experienced both journeys as one. Our org structure didn't reflect that yet.</blockquote>
+      </div>
+
+      <!-- Two journey cards -->
+      <div class="cs-two-col" style="gap:16px;">
+        <div class="cs-shift-box">
+          <div class="box-label">Journey 01</div>
+          <div class="box-body" style="font-size:clamp(20px,2.4vw,28px);margin-bottom:16px;">AI Adoption</div>
+          <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;">Helping organizations evaluate risk, configure access, and govern usage at a granular level, including control over exactly which content could or couldn't be ingested by the model.</p>
+        </div>
+        <div class="cs-shift-box">
+          <div class="box-label">Journey 02</div>
+          <div class="box-body" style="font-size:clamp(20px,2.4vw,28px);margin-bottom:16px;">AI Security</div>
+          <p style="font-size:16px;font-weight:300;color:rgba(255,255,255,0.8);line-height:1.7;">Helping organizations identify risk, understand impact, apply policy, protect content, and respond to incidents. Customers experienced both journeys as one. Our org structure didn't reflect that yet.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRANSFORMATION 4 ══ -->
+<div class="cs-bg-light">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">04</div>
+        <div class="cs-chapter-head">
+          <h2>Build the Team</h2>
+          <p class="sub">From headcount to capability</p>
+        </div>
+      </div>
+
+      <div class="cs-two-col top" style="margin-bottom:64px;">
+        <div class="cs-body">
+          <p>I joined Miro to a two-person design team. A skills matrix comparing existing strengths against what the future portfolio would demand became the hiring plan, interaction designers for the dashboards we lacked craft for, systems thinkers for problems that crossed permissions, administration, and governance.</p>
+          <p>The team went from zero to roughly twenty in four months. The matrix outlived hiring, leadership used it to staff projects deliberately and have contribution-based career conversations.</p>
+        </div>
+        <div class="cs-media free">
+          <picture><source type="image/avif" srcset="public/team-matrix.avif"><img src="public/team-matrix.jpg" alt="Skills matrix - team capability mapping"></picture>
+        </div>
+      </div>
+
+      <div class="cs-quote">
+        <blockquote>You may own an area, but you are building one system.</blockquote>
+      </div>
+
+      <div class="cs-quote red" style="margin-top:0;">
+        <blockquote>When the architecture of the product changes, the architecture of the organization has to change with it.</blockquote>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHAT WE SHIPPED ══ -->
+<div class="cs-bg-white">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">05</div>
+        <div class="cs-chapter-head">
+          <h2>40 Features Shipped</h2>
+          <p class="sub">Across the enterprise portfolio, 2022–2025</p>
+        </div>
+      </div>
+
+      <div class="cs-media free" style="margin-bottom:0;">
+        <picture><source type="image/avif" srcset="public/entity-diagram-2.avif"><img src="public/entity-diagram-2.jpg" alt="Product overview - enterprise surfaces"></picture>
+      </div>
+
+      <div class="cs-shipped-list">
+        <div class="cs-shipped-item">
+          <span class="snum">01</span>
+          <div><h4>Admin Panel</h4><p>Central area for admins to manage their Miro infrastructure, settings, and organization-wide policies.</p></div>
+          <span class="stag">Foundation</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">02</span>
+          <div><h4>Admin Dashboard &amp; Insights</h4><p>Visibility into environment health, AI adoption, and overall Miro adoption across the organization.</p></div>
+          <span class="stag">Growth Lever</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">03</span>
+          <div><h4>Enterprise Guard</h4><p>Protects IP content and PII within the platform. Drove a 30% revenue premium on enterprise contracts.</p></div>
+          <span class="stag">Security</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">04</span>
+          <div><h4>AI Settings: Granular Controls</h4><p>Fine-grained controls over how AI capabilities are enabled, governed, and scoped at org, team, and board level.</p></div>
+          <span class="stag">AI Governance</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">05</span>
+          <div><h4>Multi-Region Collaboration</h4><p>Supports distributed teams collaborating across regions, including Japan data residency infrastructure.</p></div>
+          <span class="stag">Compliance</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">06</span>
+          <div><h4>Custom Roles</h4><p>Admins can create roles tailored to their organization's permission structure and security requirements.</p></div>
+          <span class="stag">Permissions</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">07</span>
+          <div><h4>Lifecycle Management</h4><p>Governs what happens to boards over time: archiving, legal hold, data retention, and decommission.</p></div>
+          <span class="stag">Governance</span>
+        </div>
+        <div class="cs-shipped-item">
+          <span class="snum">08</span>
+          <div><h4>Miro Announcements</h4><p>Lets admins broadcast information, policy changes, and new feature access directly to their users.</p></div>
+          <span class="stag">Administration</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ IMPACT ══ -->
+<div class="cs-dark-wrap">
+  <div class="container">
+    <div class="cs-pad">
+
+      <div class="cs-chapter">
+        <div class="cs-chapter-num">06</div>
+        <div class="cs-chapter-head">
+          <h2>Results</h2>
+          <p class="sub">Three years of enterprise transformation</p>
+        </div>
+      </div>
+
+      <div class="cs-impact-mosaic">
+        <div class="cs-impact-cell featured">
+          <div class="num">$10M</div>
+          <div class="desc">Additional revenue directly attributable to the enterprise foundation built over three years</div>
+        </div>
+        <div class="cs-impact-cell">
+          <div class="num">+30%</div>
+          <div class="desc">Revenue growth from security capabilities, led by Enterprise Guard</div>
+        </div>
+        <div class="cs-impact-cell">
+          <div class="num">+30%</div>
+          <div class="desc">Enterprise conversion lift from A/B testing on admin surfaces</div>
+        </div>
+        <div class="cs-impact-cell">
+          <div class="num">+20%</div>
+          <div class="desc">Enterprise adoption rate driven by admin-led visibility tooling</div>
+        </div>
+        <div class="cs-impact-cell">
+          <div class="num">3</div>
+          <div class="desc">New markets entered through regional data residency, including Japan</div>
+        </div>
+        <div class="cs-impact-cell">
+          <div class="num">20</div>
+          <div class="desc">Designers: team grew from two to twenty in four months</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ BACK ══ -->
+<div class="cs-back-section">
+  <div class="container">
+    <a href="projects.html" class="cs-back-link">&#8592; Back to all projects</a>
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>&copy; Copyright <span id="footer-year">2026</span>. All Rights Reserved by <a href="index.html">Daria Tarawneh</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hamburger menu
+(function() {
+  const hamburger = document.querySelector('.nav-hamburger');
+  const drawer = document.querySelector('.nav-drawer');
+  if (!hamburger || !drawer) return;
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!open));
+    drawer.setAttribute('aria-hidden', String(open));
+    hamburger.classList.toggle('open', !open);
+    drawer.classList.toggle('open', !open);
+  });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+})();
+</script>
+
+<script>
+// Accordion Gallery - full-featured port with detail panel
+(function() {
+  const shell = document.getElementById('ag-shell');
+  const root  = document.getElementById('ag-ai');
+  if (!shell || !root) return;
+  const panels = Array.from(root.querySelectorAll('.ag-panel'));
+  let detailEl = null;
+
+  function buildDetail(p) {
+    const d = document.createElement('div');
+    d.className = 'ag-detail';
+    d.setAttribute('aria-live', 'polite');
+    d.innerHTML = `
+      <div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;">
+          <div class="ag-detail-eyebrow">${p.dataset.eyebrow || ''}</div>
+          <button class="ag-detail-close" aria-label="Close details">×</button>
+        </div>
+        <div class="ag-detail-title">${p.dataset.title || ''}</div>
+        <div class="ag-detail-fields">
+          ${p.dataset.problem ? `<div><div class="ag-detail-label">Problem</div><div class="ag-detail-body">${p.dataset.problem}</div></div>` : ''}
+          ${p.dataset.role    ? `<div><div class="ag-detail-label">My Role</div><div class="ag-detail-body">${p.dataset.role}</div></div>` : ''}
+          ${p.dataset.decision? `<div><div class="ag-detail-label">Key Decision</div><div class="ag-detail-body">${p.dataset.decision}</div></div>` : ''}
+        </div>
+      </div>`;
+    d.querySelector('.ag-detail-close').addEventListener('click', closeDetail);
+    return d;
+  }
+
+  function openDetail(p) {
+    if (detailEl) detailEl.remove();
+    detailEl = buildDetail(p);
+    shell.insertBefore(detailEl, root);
+  }
+
+  function closeDetail() {
+    if (detailEl) { detailEl.remove(); detailEl = null; }
+  }
+
+  function activate(idx) {
+    panels.forEach((p, i) => {
+      const isActive = i === idx;
+      p.classList.toggle('active', isActive);
+      p.classList.remove('before', 'after');
+      if (!isActive) p.classList.add(i < idx ? 'before' : 'after');
+      p.setAttribute('aria-current', isActive ? 'true' : '');
+    });
+  }
+
+  panels.forEach((p, i) => {
+    p.addEventListener('mouseenter', () => activate(i));
+    p.addEventListener('focus',      () => activate(i));
+    p.addEventListener('click',      () => { activate(i); openDetail(p); });
+    p.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ')   { e.preventDefault(); activate(i); openDetail(p); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); activate(Math.min(i + 1, panels.length - 1)); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); activate(Math.max(i - 1, 0)); }
+    });
+  });
+
+  activate(0);
+})();
+</script>
+
+<script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+<script src="cms.js"></script>
+</body>
+</html>

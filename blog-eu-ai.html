@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure and Compliant AI - Daria Tarawneh</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><picture><source type="image/avif" srcset="public/daria-hero.avif"><img src="public/daria-hero.jpg" alt="Daria Tarawneh"></picture></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blogs.html" class="active" aria-current="page">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blogs.html" class="active" aria-current="page">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<main id="main-content">
+
+<section>
+  <div class="container">
+    <div class="article-header">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);">Insights</span>
+        <span style="font-size:13px;color:var(--grey-150);">Apr 27, 2025</span>
+      </div>
+      <h1 style="font-family:'Antonio',sans-serif;font-weight:700;font-size:clamp(48px,6vw,80px);text-transform:uppercase;color:var(--grey-200);line-height:0.95;letter-spacing:-1px;margin-bottom:32px;">Secure and Compliant AI Inspired by the EU AI Act</h1>
+      <p style="max-width:680px;">We keep talking about AI adoption like it's a light switch. But anyone who has shipped an AI feature inside a real company knows the truth: it's not a switch. It's strategy, security, compliance, change management — a whole system of invisible essential work.</p>
+    </div>
+
+    <div class="article-body">
+      <h2>This Is Not Fiction. It Already Happened.</h2>
+      <p>An AI coding tool wiped out a software company's database — then apologized for a "catastrophic failure on my part." An AI agent inside Meta gave an engineer guidance that exposed sensitive company data to employees for two hours. Samsung engineers pasted source code and meeting notes into a public LLM, and that data didn't just leave the building — it became training data.</p>
+      <p>None of these are hacker stories. There's no villain, no exploit, no breach in the traditional sense. It's a normal question, an AI-generated answer, and one wrong action. That's the new shape of a security incident.</p>
+      <p>And it's not rare. LayerX's 2025 Enterprise AI and SaaS Data Security Report found that 77% of employees paste data into GenAI tools, 82% of that activity happens through unmanaged or private accounts, and 22% of what gets pasted contains PII or PCI.</p>
+
+      <h2>Frictionless + High Stakes = Disaster</h2>
+      <p>Here's the design problem hiding inside all of this. For a decade, our entire craft has optimized toward one thing: remove friction. Fewer clicks, fewer steps, fewer moments where the user has to stop and think. That instinct made sense when the downside of a mistake was small.</p>
+      <p>AI breaks that assumption. The actions AI can now take on someone's behalf — deleting a database, exposing internal data, generating something that goes out under a real person's name — are no longer small. When you keep a frictionless interface wrapped around a high-stakes action, you're not being elegant. You're building a ramp toward a cliff.</p>
+      <p>That's why 84% of companies worldwide now say security and compliance are their #1 buying criteria — ahead of features, price, and ease of use. Trust has quietly become the product requirement that beats every other product requirement.</p>
+
+      <h2>The EU AI Act Turns "Compliant and Ethical" Into a Design Brief</h2>
+      <p>The EU AI Act doesn't hand designers a template or a UI kit. It hands us a responsibility: turn "compliant," "ethical," "transparent," and "safe" into things a person can actually see, control, predict, trace, and recover from. That translation work — from legal language to interface — is a design job.</p>
+      <p>I've been building this out as a five-pillar framework, because "be compliant" isn't actionable and "be ethical" isn't a Figma file:</p>
+      <ol>
+        <li><strong>Visibility</strong> — if users cannot see it, they cannot judge it. Users should know when AI is involved. Sources should be visible, not hidden behind a shrug. Uncertainty should be designed into the interface, not smoothed away.</li>
+        <li><strong>Control</strong> — human-in-the-loop is not a policy, it's an interface. Users need a real way to interrupt the AI mid-action. Risky actions require human approval before they execute, not a notification after the fact.</li>
+        <li><strong>Predictability</strong> — trust grows when behavior becomes learnable. A system that's 60% sure should not present itself the same way as one that's 99% sure.</li>
+        <li><strong>Accountability</strong> — if no one can trace it, no one really owns it. Every AI action should leave a trail teams can reconstruct.</li>
+        <li><strong>Recovery</strong> — failure needs a designed path back. AI will fail. The question is whether failure is a dead end or a recoverable state. That means undo, rollback, restore, report, and appeal — real ones.</li>
+      </ol>
+
+      <h2>What This Looks Like in the Wild</h2>
+      <p>Two examples I keep coming back to. Instagram labels AI-generated and AI-edited content — and changed the label from "Made with AI" to "AI info" after realizing people were misreading what the original label meant. That's the whole accountability pillar in miniature: a label isn't a sticker, it's a trust interface.</p>
+      <p>Claude, meanwhile, gives you an explicit choice between "Ask before acting" and "Act without asking" — plus a standing reminder that it's AI and can make mistakes. That's Control and Visibility, built directly into the interaction, not buried in a settings page nobody opens.</p>
+
+      <h2>Ten Things to Actually Design For</h2>
+      <ol>
+        <li>Design for understanding, not just use.</li>
+        <li>Reveal critical complexity — make confidence, uncertainty, and limitations visible where it matters.</li>
+        <li>Design for human agency — let people interrupt, challenge, override, and escalate decisions.</li>
+        <li>Design for uncertainty — AI is probabilistic. Communicate ambiguity honestly.</li>
+        <li>Design for failure, not just success — anticipate hallucinations, overtrust, and silent failure states.</li>
+        <li>Design transparency into the experience — show where outputs come from.</li>
+        <li>Design permissions as ethics — permissions shape power and access.</li>
+        <li>Design for accountability — make it traceable: who did what, when, and why.</li>
+        <li>Design responsible friction — not all friction is bad. Some friction protects judgment.</li>
+        <li>Design for trust over time — trust emerges when a system consistently behaves safely, predictably, and responsibly.</li>
+      </ol>
+
+      <h2>The Next AI Winners Won't Feel Magical</h2>
+      <p>They'll feel understandable, controllable, and accountable.</p>
+      <p>That's a harder thing to design than a slick demo. It's also the only version of "AI-powered" that survives contact with real users, real regulators, and a real incident report. The EU AI Act didn't hand us a layout — it handed us the job of making responsibility legible. That's design work. We should start acting like it.</p>
+    </div>
+
+    <div style="margin-top:80px;padding-top:48px;border-top:1px solid var(--grey-100);">
+      <a href="blogs.html" class="browse-link">← Back to all insights</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+<div class="footer-inner">
+  <div class="footer-bottom">
+    <p>&copy; Copyright <span id="footer-year">2026</span>. All Rights Reserved by <a href="index.html">Daria Tarawneh</a></p>
+  </div>
+</div>
+</footer>
+
+<script>
+const hamburger = document.querySelector(".nav-hamburger");
+const drawer = document.querySelector(".nav-drawer");
+if (hamburger && drawer) {
+  hamburger.addEventListener("click", () => {
+    const open = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!open));
+    drawer.setAttribute("aria-hidden", String(open));
+    hamburger.classList.toggle("open", !open);
+    drawer.classList.toggle("open", !open);
+  });
+  drawer.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    });
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    }
+  });
+}
+</script>
+<script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+<script src="cms.js"></script>
+</body>
+</html>

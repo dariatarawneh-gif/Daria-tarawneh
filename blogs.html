@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs - Daria Tarawneh</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><picture><source type="image/avif" srcset="public/daria-hero.avif"><img src="public/daria-hero.jpg" alt="Daria Tarawneh"></picture></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blogs.html" class="active" aria-current="page">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blogs.html" class="active" aria-current="page">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<main id="main-content">
+
+<section>
+  <div class="container">
+    <div class="page-header">
+      <h1>Design Insights &amp; Ideas</h1>
+      <p>From design trends to creative processes, these articles offer insights to help you elevate your craft, solve challenges, and spark new ideas for your projects.</p>
+    </div>
+
+    <!-- Featured -->
+    <a href="blog-eu-ai.html" aria-label="Read: Secure and Compliant AI Inspired by the EU AI Act" style="text-decoration:none;">
+      <div class="blog-featured">
+        <div class="blog-featured-tag">Most Viewed</div>
+        <div class="blog-featured-content">
+          <div style="font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Insights &nbsp;·&nbsp; Apr 27, 2025</div>
+          <h2>Secure and Compliant AI Inspired by the EU AI Act</h2>
+          <p>We keep talking about AI adoption like it's a light switch. But anyone who has actually shipped an AI feature inside a real company knows the truth: it's not a switch. It's strategy, security, compliance, change management, a whole system of invisible essential work.</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- Grid -->
+    <div class="blog-grid" style="margin-top:40px;">
+      <a href="blog-miro-team.html" class="blog-card">
+        <div class="blog-card-tag">Insights</div>
+        <div class="blog-card-date">Apr 30, 2025</div>
+        <h3>Building the Team That Could Build Enterprise Miro</h3>
+        <p>When I joined Miro in 2022, the company was coming out of a period of extraordinary growth. My job was not simply to hire more designers.</p>
+      </a>
+      <a href="blog-typography.html" class="blog-card">
+        <div class="blog-card-tag">Insights</div>
+        <div class="blog-card-date">May 2, 2025</div>
+        <h3>The Power of Typography in Web Design</h3>
+        <p>Learn how typography can make or break your website and discover tips for choosing the right fonts to create impact and readability.</p>
+      </a>
+      <a href="blog-color.html" class="blog-card">
+        <div class="blog-card-tag">Insights</div>
+        <div class="blog-card-date">Apr 22, 2025</div>
+        <h3>The Role of Color Psychology in Branding</h3>
+        <p>Understand how colors evoke emotions and influence brand perception to create designs that connect with your audience.</p>
+      </a>
+      <a href="blog-uxux.html" class="blog-card">
+        <div class="blog-card-tag">Resources</div>
+        <div class="blog-card-date">Mar 30, 2025</div>
+        <h3>Mastering UI/UX Design: Key Principles for Success</h3>
+        <p>Explore the foundational principles of UI/UX design that create seamless and enjoyable experiences for users.</p>
+      </a>
+      <a href="blog-creativity.html" class="blog-card">
+        <div class="blog-card-tag">Insights</div>
+        <div class="blog-card-date">Apr 5, 2025</div>
+        <h3>Balancing Creativity and Functionality in Design</h3>
+        <p>Learn how to create visually stunning designs that remain functional, ensuring user needs are met without compromising aesthetics.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Subscribe -->
+<div class="container">
+  <div class="subscribe-banner">
+    <div class="subscribe-text">
+      <h2>Like what you see? There's more.</h2>
+      <p>Get monthly inspiration, blog updates, and creative process notes, handcrafted for fellow creators.</p>
+    </div>
+    <form class="subscribe-form" onsubmit="return false;">
+      <label for="subscribe-email" class="sr-only">Email address</label>
+      <input id="subscribe-email" type="email" placeholder="your@email.com" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+</main>
+<footer>
+<div class="footer-inner">
+  <div class="footer-bottom">
+    <p>&copy; Copyright <span id="footer-year">2026</span>. All Rights Reserved by <a href="index.html">Daria Tarawneh</a></p>
+  </div>
+</div>
+</footer>
+
+
+<script>
+const hamburger = document.querySelector(".nav-hamburger");
+const drawer = document.querySelector(".nav-drawer");
+if (hamburger && drawer) {
+  hamburger.addEventListener("click", () => {
+    const open = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!open));
+    drawer.setAttribute("aria-hidden", String(open));
+    hamburger.classList.toggle("open", !open);
+    drawer.classList.toggle("open", !open);
+  });
+  drawer.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    });
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    }
+  });
+}
+</script>
+<script>document.getElementById('footer-year').textContent=new Date().getFullYear();</script>
+<script src="cms.js"></script>
+</body>
+</html>

@@ -1,0 +1,2904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Making AWS Easier to Operate - Daria Tarawneh</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cs-page { background: var(--white); }
+
+    /* ── HERO (kept dark) ── */
+    .cs-hero {
+      position: relative;
+      background: #0f1923;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
+      overflow: hidden;
+      margin-top: -70px;
+    }
+    .cs-hero-bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+    .cs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #0f1923 0%, rgba(15,25,35,0.75) 50%, rgba(15,25,35,0.5) 100%);
+    }
+    .cs-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 48px 72px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .cs-hero-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+    .cs-hero h1 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(56px, 8vw, 120px);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 0.93;
+      letter-spacing: -3px;
+      margin-bottom: 40px;
+      max-width: 1000px;
+    }
+    .cs-hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+    .cs-meta-bar {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-cell {
+      padding-right: 40px;
+      min-width: 110px;
+    }
+    .cs-meta-cell + .cs-meta-cell {
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 40px;
+    }
+    .cs-meta-cell .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 5px;
+    }
+    .cs-meta-cell .value {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── TICKER ── */
+    .cs-ticker {
+      background: var(--red);
+      overflow: hidden;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .cs-ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .cs-ticker-track span {
+      font-family: 'Antonio', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.9);
+      padding: 0 44px;
+    }
+    .cs-ticker-track span.dot {
+      color: rgba(255,255,255,0.35);
+      padding: 0 2px;
+      font-size: 10px;
+      letter-spacing: 0;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── CHAPTER MARKER — minimal left-label style ── */
+    .cs-chapter {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      align-items: start;
+      padding: 120px 0 0;
+      border-top: 1px solid var(--grey-100);
+      margin-bottom: 56px;
+    }
+    .cs-chapter.no-border { border-top: none; padding-top: 0; }
+    .cs-chapter-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey-150);
+      padding-top: 8px;
+      user-select: none;
+    }
+    .cs-chapter-head h2 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.5vw, 52px);
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+    .cs-chapter-head .sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey-150);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION BG ── */
+    .cs-bg-white { background: var(--white); }
+    .cs-bg-light { background: var(--bg); }
+    /* dark-wrap now renders as white */
+    .cs-dark-wrap { background: var(--white); }
+
+    /* ── RED ACCENT (kept for pull quotes and challenge block) ── */
+    .cs-red-quote {
+      background: var(--red);
+      padding: 72px 48px;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      margin-top: 64px;
+      margin-bottom: 64px;
+      padding-left: calc(50vw - 50% + 48px);
+      padding-right: calc(50vw - 50% + 48px);
+    }
+    .cs-red-quote blockquote {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      max-width: 900px;
+    }
+
+    /* ── PADDING ── */
+    .cs-pad { padding: 0 0 100px; }
+
+    /* ── BODY TEXT ── */
+    .cs-body p {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .cs-body p:last-child { margin-bottom: 0; }
+    .cs-body-light p { color: var(--grey-200); }
+
+    /* ── LAYOUTS ── */
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .cs-two-col.top { align-items: start; }
+    .cs-two-col.rev { direction: rtl; }
+    .cs-two-col > * { direction: ltr; }
+    .cs-two-col.rev > * { direction: ltr; }
+    .cs-media-full { width: 120%; margin: 0 -10% 8px; }
+    .cs-media-full picture, .cs-media-full img { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .cs-fullbleed-strip { width: 100vw; margin-left: calc(50% - 50vw); line-height: 0; }
+    .cs-fullbleed-strip img { width: 100%; height: auto; display: block; }
+    .cs-col-60-40 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    /* ── MEDIA ── */
+    .cs-media {
+      border-radius: 12px;
+      overflow: hidden;
+      background: transparent;
+    }
+    .cs-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .cs-media.tall { aspect-ratio: auto; height: auto; }
+    .cs-media.tall img { height: auto; object-fit: contain; }
+    .cs-media.wide { aspect-ratio: auto; height: auto; }
+    .cs-media.wide img { height: auto; object-fit: contain; }
+    .cs-media.free { aspect-ratio: auto; height: auto; }
+    .cs-media.free-lg { aspect-ratio: auto; height: auto; border-radius: 0; }
+    .cs-media.free img, .cs-media.free-lg img { height: auto; object-fit: contain; }
+    .cs-media.contain img { object-fit: contain; background: #f0f2f5; }
+
+    /* ── IMAGE GRID SCALE ── */
+    .cs-img-grid-2,
+    .cs-img-grid-3 {
+      width: 120%;
+      margin-left: -10%;
+      margin-right: -10%;
+    }
+
+    /* ── SCALE ALL STANDALONE MEDIA 20% ── */
+    .cs-two-col .cs-media,
+    .cs-col-60-40 .cs-media {
+      width: 120%;
+      margin-left: -10%;
+    }
+    .cs-two-col.rev .cs-media,
+    .cs-col-60-40.rev .cs-media {
+      margin-left: 0;
+      margin-right: -10%;
+    }
+
+    /* ── SCOPE STRIP ── */
+    .cs-scope-strip {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--grey-100);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 48px 0;
+    }
+    .cs-scope-cell {
+      flex: 1;
+      padding: 32px;
+      text-align: left;
+    }
+    .cs-scope-cell + .cs-scope-cell { border-left: 1px solid var(--grey-100); }
+    .cs-scope-cell .sc-num {
+      font-family: 'Antonio', sans-serif;
+      font-size: 56px;
+      font-weight: 600;
+      color: var(--grey-200);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 6px;
+    }
+    .cs-scope-cell .sc-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--grey-150);
+      line-height: 1.4;
+    }
+
+    /* ── PULL QUOTE ── */
+    .cs-quote {
+      padding: 80px 0;
+      margin: 64px 0;
+    }
+    .cs-quote blockquote {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(24px, 3.5vw, 44px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      max-width: 900px;
+    }
+    .cs-quote.red blockquote { color: var(--red); }
+    .cs-quote.inv blockquote { color: var(--grey-200); }
+    .cs-quote .attribution {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-150);
+      margin-top: 20px;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .cs-product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 56px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--grey-100);
+      border: 1px solid var(--grey-100);
+    }
+    .cs-product-card {
+      background: var(--white);
+      padding: 36px 32px;
+    }
+    .cs-product-card .pc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .cs-product-card h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .cs-product-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.65;
+    }
+
+    /* ── JOURNEY STEPS (interactive tabs) — light version ── */
+    .cs-journey {
+      margin-top: 56px;
+    }
+    .cs-journey-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-bottom: 1px solid var(--grey-100);
+    }
+    .cs-journey-tab {
+      padding: 24px 24px 20px;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .cs-journey-tab:hover { background: var(--bg); }
+    .cs-journey-tab.active { border-bottom-color: var(--red); }
+    .cs-journey-tab-num {
+      font-family: 'Antonio', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .cs-journey-tab-label {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(14px, 1.5vw, 18px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-150);
+      line-height: 1.1;
+      transition: color 0.2s ease;
+    }
+    .cs-journey-tab.active .cs-journey-tab-label { color: var(--grey-200); }
+    .cs-journey-panels {
+      position: relative;
+    }
+    .cs-journey-panel {
+      display: none;
+      padding: 56px 0;
+    }
+    .cs-journey-panel.active { display: block; }
+    .cs-journey-panel-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+    .cs-journey-panel h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin: 0;
+    }
+    .cs-journey-panel p {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      max-width: 100%;
+    }
+    .cs-journey-panel p:last-of-type { margin-bottom: 0; }
+    .cs-journey-imgs {
+      display: grid;
+      gap: 16px;
+      margin-top: 72px;
+    }
+    .cs-journey-imgs.grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .cs-journey-imgs.grid-2 { grid-template-columns: 1fr 1fr; }
+    .cs-journey-imgs .cs-media {
+      border-radius: 12px;
+      aspect-ratio: auto;
+      height: auto;
+      background: transparent;
+    }
+    .cs-journey-imgs .cs-media img { object-fit: contain; }
+    @media (prefers-reduced-motion: no-preference) {
+      .cs-journey-panel.active {
+        animation: jstep-in 0.45s cubic-bezier(0.16,1,0.3,1) both;
+      }
+      @keyframes jstep-in {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+    }
+
+    /* ── FEATURE ACCORDION ── */
+    .cs-feature-group {
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .cs-feature-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+    }
+    .cs-feature-trigger:hover { background: var(--bg); }
+    .cs-feature-trigger-label {
+      font-family: 'Antonio', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.3px;
+    }
+    .cs-feature-trigger-intro {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-150);
+      margin-top: 4px;
+    }
+    .cs-feature-caret {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--grey-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .cs-feature-caret svg { width: 14px; height: 14px; stroke: var(--grey-150); fill: none; stroke-width: 2; }
+    .cs-feature-group.open .cs-feature-caret { transform: rotate(180deg); }
+    .cs-feature-body {
+      display: none;
+      padding: 0 32px 32px;
+      border-top: 1px solid var(--grey-100);
+    }
+    .cs-feature-group.open .cs-feature-body { display: block; }
+    .cs-feature-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 24px;
+    }
+    .cs-feature-tag {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-200);
+      background: var(--bg);
+      border: 1px solid var(--grey-100);
+      border-radius: 999px;
+      padding: 6px 16px;
+    }
+
+    /* ── OUTCOME CARDS — light bordered ── */
+    .cs-outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 56px;
+      background: var(--grey-100);
+      border-radius: 4px;
+      border: 1px solid var(--grey-100);
+      overflow: hidden;
+    }
+    .cs-outcome-card {
+      background: var(--white);
+      padding: 48px 40px;
+    }
+    .cs-outcome-card.wide {
+      grid-column: auto;
+      grid-row: auto;
+      display: block;
+      justify-content: unset;
+    }
+    .cs-outcome-card.wide .oc-num { margin-top: 0; padding-top: 0; }
+    .cs-outcome-card .oc-num {
+      font-family: 'Antonio', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .cs-outcome-card h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+    .cs-outcome-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-150);
+      line-height: 1.65;
+    }
+
+    /* ── IMAGE GRID ── */
+    .cs-img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+      align-items: stretch;
+    }
+    .cs-img-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+      align-items: stretch;
+    }
+    .cs-img-grid-2 .cs-media,
+    .cs-img-grid-3 .cs-media {
+      aspect-ratio: 4/3;
+      height: auto;
+    }
+    .cs-img-grid-2 .cs-media img,
+    .cs-img-grid-3 .cs-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── BACK ── */
+    .cs-back-section { background: var(--bg); padding: 72px 0; border-top: 1px solid var(--grey-100); }
+    .cs-back-link {
+      font-family: 'Antonio', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--grey-150);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cs-back-link:hover { color: var(--grey-200); }
+
+    /* ── SECTION SUBTITLE ── */
+    .cs-section-sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-150);
+      max-width: 640px;
+      margin-top: 8px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .cs-two-col, .cs-col-60-40 { grid-template-columns: 1fr; gap: 48px; }
+      .cs-two-col.rev { direction: ltr; }
+      .cs-chapter { grid-template-columns: 1fr; gap: 16px; }
+      .cs-chapter-num { font-size: 11px; }
+      .cs-product-grid { grid-template-columns: 1fr 1fr; }
+      .cs-outcome-grid { grid-template-columns: 1fr; }
+      .cs-outcome-card.wide { grid-column: auto; grid-row: auto; }
+      .cs-outcome-card.wide .oc-num { padding-top: 0; margin-top: 0; }
+      .cs-scope-strip { flex-wrap: wrap; }
+      .cs-scope-cell { flex: 1 0 40%; }
+      .cs-hero h1 { letter-spacing: -1px; }
+      .cs-hero-content { padding: 0 32px 56px; }
+      .cs-img-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .cs-product-grid { grid-template-columns: 1fr; }
+      .cs-img-grid-2, .cs-img-grid-3 { grid-template-columns: 1fr; }
+      .cs-meta-bar { flex-direction: column; gap: 20px; }
+      .cs-meta-cell + .cs-meta-cell { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+      .cs-scope-cell { flex: 1 0 100%; }
+      .cs-journey-tabs { grid-template-columns: 1fr 1fr; }
+      .cs-journey-panel-head { grid-template-columns: 1fr; gap: 24px; }
+      .cs-journey-imgs.grid-3, .cs-journey-imgs.grid-2 { grid-template-columns: 1fr; }
+    }
+    /* ── ROLE TABS ── */
+    .cs-role-tabs { display: none; }
+    .cs-role-tab { display: none; }
+    .cs-role-desc { display: none; }
+
+    /* ── JOURNEY ARC (ch02) ── */
+    .cs-journey-arc { margin-top: 56px; }
+
+    .cs-arc-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 0;
+    }
+    .cs-arc-track::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: calc(100% / 14);
+      right: calc(100% / 14);
+      height: 1px;
+      background: var(--grey-100);
+      z-index: 0;
+    }
+    .cs-arc-stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+    .cs-arc-node {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--grey-100);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+    .cs-arc-node-num {
+      font-family: 'Antonio', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grey-150);
+      transition: color 0.2s;
+    }
+    .cs-arc-stop.active .cs-arc-node,
+    .cs-arc-stop:hover .cs-arc-node {
+      border-color: var(--grey-200);
+      background: var(--grey-200);
+      box-shadow: 0 0 0 6px rgba(48,48,48,0.08);
+    }
+    .cs-arc-stop.active .cs-arc-node-num,
+    .cs-arc-stop:hover .cs-arc-node-num {
+      color: #fff;
+    }
+    .cs-arc-connector {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      right: -50%;
+      height: 1px;
+      background: var(--grey-100);
+      z-index: 0;
+      transform-origin: left center;
+      transition: background 0.3s;
+    }
+    .cs-arc-stop:last-child .cs-arc-connector { display: none; }
+    .cs-arc-stop.active .cs-arc-connector,
+    .cs-arc-stop.past .cs-arc-connector {
+      background: var(--grey-200);
+    }
+    .cs-arc-card {
+      margin-top: 16px;
+      width: 100%;
+      padding: 0 8px;
+      text-align: center;
+    }
+    .cs-arc-verb {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+      transition: color 0.2s;
+    }
+    .cs-arc-name {
+      font-family: 'Antonio', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .cs-arc-detail-wrap {
+      grid-column: 1 / -1;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease;
+      opacity: 0;
+    }
+    .cs-arc-detail-wrap.open {
+      max-height: 320px;
+      opacity: 1;
+    }
+    .cs-arc-detail-inner {
+      background: var(--bg);
+      border: 1px solid var(--grey-100);
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 2fr 2fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .cs-arc-detail-img-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: transparent;
+    }
+    .cs-arc-detail-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .cs-arc-detail-img-wrap img.loaded { opacity: 1; }
+    .cs-arc-detail-service {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .cs-arc-detail-verb-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .cs-arc-detail-text {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.75;
+    }
+    @media (max-width: 960px) {
+      .cs-arc-track { grid-template-columns: repeat(4, 1fr); }
+      .cs-arc-track::before { left: calc(100% / 8); right: calc(100% / 8); }
+    }
+    @media (max-width: 600px) {
+      .cs-arc-track { grid-template-columns: 1fr 1fr; }
+      .cs-arc-detail-inner { grid-template-columns: 1fr; gap: 12px; }
+      .cs-arc-detail-img-wrap { display: none; }
+    }
+
+    /* ── LEADERSHIP ── */
+    .cs-leadership {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin: 64px 0;
+      background: var(--white);
+    }
+    .cs-leadership-img {
+      position: relative;
+      aspect-ratio: auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+      width: 120%;
+      margin-left: -10%;
+    }
+    .cs-leadership-img img {
+      width: 100%; height: auto;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(100%) contrast(1.05);
+      opacity: 0.6;
+    }
+    .cs-leadership-content h2 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+    .cs-leadership-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .cs-leadership-list li {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.65;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--grey-100);
+      padding-left: 0;
+      position: relative;
+    }
+    .cs-leadership-list li:first-child { border-top: 1px solid var(--grey-100); }
+    @media (max-width: 768px) {
+      .cs-leadership { grid-template-columns: 1fr; gap: 32px; }
+      .cs-leadership-img { aspect-ratio: 16/9; }
+    }
+
+    /* ── CHALLENGES (now light) ── */
+    .cs-challenges-wrap {
+      background: var(--bg);
+      padding: 80px 0 96px;
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      padding-left: calc(50vw - 50% + 48px);
+      padding-right: calc(50vw - 50% + 48px);
+      margin-top: 64px;
+      margin-bottom: 64px;
+      border-top: 1px solid var(--grey-100);
+      border-bottom: 1px solid var(--grey-100);
+    }
+    .cs-challenges-heading {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: -0.5px;
+      line-height: 1;
+      margin-bottom: 48px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cs-challenge-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .cs-challenge-card {
+      background: var(--white);
+      border: 1px solid var(--grey-100);
+      border-radius: 4px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.2s ease;
+    }
+    .cs-challenge-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .cs-challenge-card.visible {
+        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1), scale 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .cs-challenge-card.visible:hover {
+        scale: 1.1;
+        z-index: 2;
+      }
+    }
+    .cs-challenge-card:hover { border-color: var(--grey-200); }
+    .cs-challenge-card-num {
+      font-family: 'Antonio', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .cs-challenge-card h3 {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      letter-spacing: 0.01em;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .cs-challenge-card p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--grey-150);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .cs-challenge-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-challenge-card.visible::before { transform: scaleX(1); }
+    @media (max-width: 900px) {
+      .cs-challenge-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .cs-challenge-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .cs-challenges-wrap { padding-left: 24px; padding-right: 24px; }
+    }
+
+    /* ── HATS SECTION ── */
+    .cs-hats-section { margin-top: 48px; }
+    .cs-hats-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--grey-100);
+      margin-bottom: 32px;
+      overflow-x: auto;
+    }
+    .cs-hat-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 16px 28px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.18s;
+    }
+    .cs-hat-btn.active { border-bottom-color: var(--grey-200); }
+    .cs-hat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--grey-200);
+    }
+    .cs-hat-time {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--grey-150);
+    }
+    .cs-hat-panel { display: none; max-width: 680px; }
+    .cs-hat-panel.active { display: block; }
+    .cs-hat-panel-head {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--grey-200);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .cs-hat-panel p {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .cs-hat-need {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--grey-200);
+      background: var(--bg);
+      border-left: 3px solid var(--red);
+      padding: 12px 16px;
+      border-radius: 0 4px 4px 0;
+      line-height: 1.6;
+    }
+
+    /* ── VOICE WALL — minimal bordered cards ── */
+    .cs-voice-wall {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin: 56px 0;
+      background: transparent;
+    }
+    .cs-voice-card {
+      background: var(--white);
+      padding: 48px 40px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cs-voice-card.large { grid-column: span 2; text-align: center; align-items: center; }
+    .cs-voice-mark-open {
+      font-family: 'Antonio', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .cs-voice-mark-close {
+      font-family: 'Antonio', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--red);
+      line-height: 1;
+      display: block;
+      text-align: right;
+      margin-top: 8px;
+    }
+    .cs-voice-card blockquote {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 600;
+      color: var(--grey-200);
+      line-height: 1.25;
+      font-style: normal;
+      margin-bottom: 0;
+      flex: 1;
+    }
+    .cs-voice-card.large blockquote {
+      font-size: clamp(22px, 3vw, 40px);
+    }
+    .cs-voice-source {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--grey-150);
+      margin-top: 24px;
+    }
+    .cs-voice-source::before { content: '— '; }
+    @media (max-width: 700px) {
+      .cs-voice-wall { grid-template-columns: 1fr; }
+      .cs-voice-card.large { grid-column: span 1; }
+    }
+
+    /* ── CHALLENGE BLOCK (red, kept) ── */
+    .cs-challenge-block {
+      background: var(--red);
+      border-radius: 4px;
+      padding: 64px 56px;
+      margin: 48px 0;
+    }
+    .cs-challenge-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .cs-challenge-q {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 52px);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      max-width: 900px;
+    }
+
+    /* ── METRICS GRID ── */
+    .cs-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-bottom: 80px;
+      background: var(--grey-100);
+      border: 1px solid var(--grey-100);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .cs-metric-card {
+      padding: 32px 28px;
+      background: var(--white);
+    }
+    .cs-metric-obj {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--grey-200);
+      line-height: 1.5;
+      margin-bottom: 20px;
+      font-style: italic;
+      border-left: 3px solid var(--red);
+      padding-left: 12px;
+    }
+    .cs-metric-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-metric-card li {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--grey-150);
+      line-height: 1.55;
+    }
+    @media (max-width: 800px) {
+      .cs-metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── IMPACT ROW — clean light version ── */
+    .cs-impact-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--grey-100);
+      padding-top: 56px;
+      margin-top: 16px;
+    }
+    .cs-impact-stat {
+      padding-right: 32px;
+      border-right: 1px solid var(--grey-100);
+      padding-left: 32px;
+    }
+    .cs-impact-stat:first-child { padding-left: 0; }
+    .cs-impact-stat:last-child { border-right: none; }
+    .cs-impact-num {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(48px, 7vw, 88px);
+      color: var(--grey-200);
+      line-height: 0.9;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+    }
+    .cs-impact-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--grey-150);
+      line-height: 1.4;
+    }
+    /* dark-wrap override — now white, so chapter text should be dark */
+    .cs-dark-wrap .cs-chapter { border-top-color: var(--grey-100); }
+    .cs-dark-wrap .cs-chapter-num { color: var(--grey-150); }
+    .cs-dark-wrap .cs-chapter-head h2 { color: var(--grey-200); }
+    .cs-dark-wrap .cs-chapter-head .sub { color: var(--grey-150); }
+    .cs-dark-wrap .cs-journey-tab-label { color: var(--grey-150); }
+    .cs-dark-wrap .cs-journey-tab.active .cs-journey-tab-label { color: var(--grey-200); }
+    .cs-dark-wrap .cs-journey-panel h3 { color: var(--grey-200); }
+    .cs-dark-wrap .cs-journey-panel p { color: var(--grey-200); }
+    .cs-dark-wrap .cs-journey-tabs { border-bottom-color: var(--grey-100); }
+    @media (max-width: 700px) {
+      .cs-impact-row { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .cs-impact-stat { border-right: none; padding-left: 0; }
+    }
+
+    /* ── ACHIEVEMENT BLOCK ── */
+    .cs-achievement-block {
+      background: var(--bg);
+      border-radius: 4px;
+      padding: 56px;
+      margin: 56px 0 0;
+      position: relative;
+      border: 1px solid var(--grey-100);
+    }
+    .cs-achievement-mark {
+      font-family: 'Antonio', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--red);
+      line-height: 0.8;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .cs-achievement-mark-close {
+      margin-top: 12px;
+      margin-bottom: 0;
+      text-align: right;
+    }
+    .cs-achievement-block blockquote {
+      font-size: clamp(17px, 2vw, 22px);
+      font-weight: 300;
+      color: var(--grey-200);
+      font-style: italic;
+      line-height: 1.65;
+      max-width: 760px;
+      margin: 0 auto 16px;
+    }
+    .cs-achievement-src {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--grey-150);
+      font-style: italic;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      display: block;
+      text-align: center;
+    }
+    .cs-achievement-src:hover { color: var(--grey-200); }
+
+  </style>
+</head>
+<body class="cs-page">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><picture><source type="image/avif" srcset="public/daria-hero.avif"><img src="public/daria-hero.jpg" alt="Daria Tarawneh"></picture></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<main id="main-content">
+
+<!-- ══ HERO ══ -->
+<div class="cs-hero">
+  <video class="cs-hero-bg-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="public/aws-hero.mp4" type="video/mp4">
+  </video>
+  <div class="cs-hero-overlay"></div>
+  <div class="cs-hero-content">
+    <div class="cs-hero-tag">Cloud Operations &nbsp;&middot;&nbsp; Design Leadership &nbsp;&middot;&nbsp; Scale</div>
+    <h1>Making AWS<br>Easier to<br>Operate</h1>
+    <p class="cs-hero-sub">Connecting cloud services around the work customers needed to do: across Systems Manager, Config, CloudTrail, CloudFormation, OpsWorks, and resource management.</p>
+    <div class="cs-meta-bar">
+      <div class="cs-meta-cell">
+        <div class="label">Company</div>
+        <div class="value">Amazon Web Services</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Role</div>
+        <div class="value">Design Leadership, UX Strategy</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Scope</div>
+        <div class="value">7 product areas</div>
+      </div>
+      <div class="cs-meta-cell">
+        <div class="label">Reach</div>
+        <div class="value">30+ teams · 9 org units</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TICKER ── -->
+<div class="cs-ticker" aria-hidden="true">
+  <div class="cs-ticker-track">
+    <span>Systems Manager</span><span class="dot">·</span>
+    <span>CloudFormation</span><span class="dot">·</span>
+    <span>OpsWorks</span><span class="dot">·</span>
+    <span>AWS Config</span><span class="dot">·</span>
+    <span>CloudTrail</span><span class="dot">·</span>
+    <span>Resource Groups v2</span><span class="dot">·</span>
+    <span>Tag Editor v2</span><span class="dot">·</span>
+    <span>Systems Manager</span><span class="dot">·</span>
+    <span>CloudFormation</span><span class="dot">·</span>
+    <span>OpsWorks</span><span class="dot">·</span>
+    <span>AWS Config</span><span class="dot">·</span>
+    <span>CloudTrail</span><span class="dot">·</span>
+    <span>Resource Groups v2</span><span class="dot">·</span>
+    <span>Tag Editor v2</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ══ BACKGROUND & CONTEXT ══ -->
+<section class="cs-bg-white">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter no-border" style="padding-top:100px; margin-bottom:24px;">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">The inflection point</p>
+        <h2 style="white-space: nowrap;">Background &amp; Context</h2>
+      </div>
+    </div>
+
+    <div class="cs-body" style="max-width:720px;">
+      <p>In 2016, AWS was at an inflection point. After a decade of rapid, engineering-driven growth, AWS had become the market leader in cloud infrastructure — but also its own biggest competitor. Products were built as independent "building blocks" by separate teams, each optimized for speed and technical depth. The result was a fragmented, inconsistent experience that left enterprise customers stitching together their own workflows.</p>
+      <p>Leadership recognized that growth and retention hinged on ease of use, especially for enterprise DevOps and IT administrators. I was brought in as one of the earliest design leaders to lead the UX strategy for AWS Management Tools — a suite responsible for fleet management, change management, automation, compliance, provisioning, and operations.</p>
+      <p>When I first stepped into the role, the challenge wasn't just about fixing usability — it was about untangling years of fragmented growth and aligning 30+ teams around a single vision. Funding cycles were already closed, goals were locked. I used that as an opportunity to go deep on discovery, write the strategy documents, and define what we called "Consumer Grade Enterprise UX": an easier, more human experience for DevOps and IT admins.</p>
+    </div>
+
+    <div class="cs-red-quote cs-reveal" id="hero-quote" style="margin-top:56px; margin-bottom:0;">
+      <blockquote>Can we reimagine enterprise software so that usability isn't an afterthought, but a strategic advantage that drives adoption and retention?</blockquote>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 1: CONTEXT ══ -->
+<section class="cs-bg-white">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter no-border" style="padding-top:0;">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 01: Customers were connecting what we had built separately</p>
+        <h2>Customers were connecting what we had built separately</h2>
+        <p class="sub">The spaces between services</p>
+      </div>
+    </div>
+
+    <div class="cs-two-col top">
+      <div class="cs-body">
+        <p>AWS had grown through powerful, independently developed services. Each team optimized its own product, with its own roadmap, technical model, and priorities.</p>
+        <p>Customers experienced the spaces between them. Setting up infrastructure, checking its configuration, investigating an incident, and resolving it could mean moving between multiple consoles, searching documentation, and piecing together the same context repeatedly.</p>
+        <p>The challenge was to make the portfolio work as a connected experience while preserving the flexibility that made the individual services valuable.</p>
+      </div>
+      <div>
+        <div class="cs-quote" style="margin:0; padding:40px 0;">
+          <blockquote>"It's somewhat shocking that every service team seems to be doing their own thing in terms of management of the console."</blockquote>
+          <p class="attribution">Customer feedback</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer voice wall -->
+    <div class="cs-voice-wall">
+      <div class="cs-voice-card large">
+        <span class="cs-voice-mark-open">&ldquo;</span>
+        <blockquote>This is Frustrating, I have more than 20 tabs open! AWS keeps shipping their organisational structure and we suffer</blockquote>
+        <span class="cs-voice-mark-close">&rdquo;</span>
+        <p class="cs-voice-source">IT operator in a financial institution</p>
+      </div>
+      <div class="cs-voice-card">
+        <span class="cs-voice-mark-open">&ldquo;</span>
+        <blockquote>Most of the time I am not sure what I am doing. I am lost in the documentation. Why can't it be easier?</blockquote>
+        <span class="cs-voice-mark-close">&rdquo;</span>
+        <p class="cs-voice-source">IT admin in mid-size startup</p>
+      </div>
+      <div class="cs-voice-card">
+        <span class="cs-voice-mark-open">&ldquo;</span>
+        <blockquote>AWS is this complex behemoth that you need to spend a long time "learning"</blockquote>
+        <span class="cs-voice-mark-close">&rdquo;</span>
+        <p class="cs-voice-source">Developer feedback, Twitter</p>
+      </div>
+      <div class="cs-voice-card large">
+        <span class="cs-voice-mark-open">&ldquo;</span>
+        <blockquote>Frankly, @awscloud needs to hire UX people. The AWS console is a dreadful mess, the documentation is horrendous.</blockquote>
+        <span class="cs-voice-mark-close">&rdquo;</span>
+        <p class="cs-voice-source">@tobie, Twitter</p>
+      </div>
+    </div>
+
+    <!-- Design challenge -->
+    <div class="cs-challenges-wrap">
+      <div class="cs-challenges-heading">Challenges</div>
+      <div class="cs-challenge-cards">
+        <div class="cs-challenge-card">
+          <span class="cs-challenge-card-num">01</span>
+          <h3>Fragmented teams</h3>
+          <p>Align 30+ teams across nine org units, each with its own roadmap and leadership vision.</p>
+        </div>
+        <div class="cs-challenge-card">
+          <span class="cs-challenge-card-num">02</span>
+          <h3>Legacy Products</h3>
+          <p>Legacy products in market meant a simple lift and shift would not work.</p>
+        </div>
+        <div class="cs-challenge-card">
+          <span class="cs-challenge-card-num">03</span>
+          <h3>Inconsistent data</h3>
+          <p>A large volume of data that was inconsistent and not telling a coherent story.</p>
+        </div>
+        <div class="cs-challenge-card">
+          <span class="cs-challenge-card-num">04</span>
+          <h3>No design system</h3>
+          <p>Teams built the same components multiple times. The design system was still being built.</p>
+        </div>
+        <div class="cs-challenge-card">
+          <span class="cs-challenge-card-num">05</span>
+          <h3>Broken collaboration</h3>
+          <p>Trust between design and the broader organisation was broken. Designers were severely understaffed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design challenge -->
+    <div class="cs-challenge-block">
+      <div class="cs-challenge-label">The main question</div>
+      <h2 class="cs-challenge-q">How do we create a coherent, modular and integrated experience that simplifies and automates tasks related to operations management?</h2>
+    </div>
+
+    <!-- Metrics to track -->
+    <div class="cs-chapter" style="margin-top:72px; margin-bottom:32px;">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <h2>Defining success metrics</h2>
+        <p class="sub">What we set out to measure</p>
+      </div>
+    </div>
+    <div class="cs-metrics-grid">
+      <div class="cs-metric-card">
+        <div class="cs-metric-obj">Improve end-to-end user success and satisfaction across the Build suite.</div>
+        <ul>
+          <li>Increase first-feature adoption success rate by +20%</li>
+          <li>Reduce average time-to-onboard by 30%</li>
+          <li>Achieve &gt;80% task success rate in key hub flows</li>
+          <li>Improve NPS or SUS by +10 points</li>
+        </ul>
+      </div>
+      <div class="cs-metric-card">
+        <div class="cs-metric-obj">Demonstrate design's contribution to adoption and revenue.</div>
+        <ul>
+          <li>Drive +15% growth in cross-feature adoption</li>
+          <li>Reduce support tickets related to Build UI by 25%</li>
+          <li>Improve retention rate or ARR uplift among accounts with high Systems Manager usage</li>
+        </ul>
+      </div>
+      <div class="cs-metric-card">
+        <div class="cs-metric-obj">Scale design quality and efficiency across global teams.</div>
+        <ul>
+          <li>90% of new features built using the shared design system</li>
+          <li>Reduce design cycle time by 20%</li>
+          <li>Maintain &gt;80% designer engagement and satisfaction</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-scope-strip">
+      <div class="cs-scope-cell">
+        <div class="sc-num">7</div>
+        <div class="sc-label">Product areas</div>
+      </div>
+      <div class="cs-scope-cell">
+        <div class="sc-num">30+</div>
+        <div class="sc-label">Collaborating teams</div>
+      </div>
+      <div class="cs-scope-cell">
+        <div class="sc-num">9</div>
+        <div class="sc-label">Organizational units</div>
+      </div>
+      <div class="cs-scope-cell">
+        <div class="sc-num">4</div>
+        <div class="sc-label">Design disciplines</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 2: PORTFOLIO ══ -->
+<section class="cs-bg-light">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 02: One portfolio, connected responsibilities</p>
+        <h2>One portfolio, connected responsibilities</h2>
+        <p class="sub">Seven services, one customer journey</p>
+      </div>
+    </div>
+
+    <div class="cs-body" style="max-width:680px;margin-bottom:48px;">
+      <p>Each service in the portfolio had its own team, roadmap, and model. Together, they covered the full arc of cloud operations, but customers experienced the gaps between them. The work was to connect them around what someone actually needed to do.</p>
+    </div>
+
+    <!-- Interactive journey arc -->
+    <div class="cs-journey-arc">
+      <div class="cs-arc-track">
+
+        <div class="cs-arc-stop active" data-service="cloudformation" data-verb="Create" data-name="CloudFormation" data-detail="Define resources in reusable templates. Deploy environments. Manage changes across accounts and Regions." data-image="public/aws-arc-01.png">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">01</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Create</div>
+            <div class="cs-arc-name">CloudFormation</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="opsworks" data-verb="Configure" data-name="OpsWorks" data-detail="Automate server configuration and application deployment using Chef and Puppet." data-image="public/aws-arc-02.png">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">02</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Configure</div>
+            <div class="cs-arc-name">OpsWorks</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="ssm" data-verb="Operate" data-name="Systems Manager" data-detail="Manage infrastructure, automate maintenance, investigate operational issues, and take action across groups of resources." data-image="public/aws-ssm-fleet.avif">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">03</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Operate</div>
+            <div class="cs-arc-name">Systems Manager</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="config" data-verb="Understand" data-name="AWS Config" data-detail="Track resource configurations and relationships, review changes over time, and evaluate compliance against rules." data-image="public/aws-config.avif">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">04</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Understand</div>
+            <div class="cs-arc-name">AWS Config</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="cloudtrail" data-verb="Trace" data-name="CloudTrail" data-detail="Investigate who took an action, which resources were affected, and when it happened." data-image="public/aws-cloudtrail.avif">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">05</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Trace</div>
+            <div class="cs-arc-name">CloudTrail</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="rg" data-verb="Organize" data-name="Resource Groups" data-detail="Bring related resources together around an application, environment, or shared purpose." data-image="public/aws-resource-groups.avif">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">06</span></div>
+          <div class="cs-arc-connector"></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Organize</div>
+            <div class="cs-arc-name">Resource Groups</div>
+          </div>
+        </div>
+
+        <div class="cs-arc-stop" data-service="tags" data-verb="Manage metadata" data-name="Tag Editor v2" data-detail="Find resources across services and Regions, inspect their tags, and update them in bulk." data-image="public/aws-tag-editor.avif">
+          <div class="cs-arc-node"><span class="cs-arc-node-num">07</span></div>
+          <div class="cs-arc-card">
+            <div class="cs-arc-verb">Manage metadata</div>
+            <div class="cs-arc-name">Tag Editor v2</div>
+          </div>
+        </div>
+
+        <!-- Detail panel — full width row -->
+        <div class="cs-arc-detail-wrap open">
+          <div class="cs-arc-detail-inner">
+            <div>
+              <div class="cs-arc-detail-verb-tag" id="arc-detail-verb">Create</div>
+              <div class="cs-arc-detail-service" id="arc-detail-name">CloudFormation</div>
+            </div>
+            <div class="cs-arc-detail-text" id="arc-detail-text">Define resources in reusable templates. Deploy environments. Manage changes across accounts and Regions.</div>
+            <div class="cs-arc-detail-img-wrap">
+              <img id="arc-detail-img" src="public/aws-cloudformation.avif" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 3: DIRECTION ══ -->
+<section class="cs-bg-white">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 03: Establishing a direction teams could share</p>
+        <h2>Establishing a direction teams could share</h2>
+        <p class="sub">Building the organization alongside the experience</p>
+      </div>
+    </div>
+
+    <div class="cs-two-col top">
+      <div class="cs-body">
+        <p>I joined an environment where annual plans were committed, funding cycles had closed, and design capacity was stretched. A shared design system was still developing, teams were rebuilding trust, and existing customers depended on the products already in market.</p>
+        <p>My responsibility was to establish the UX direction and build the organization needed to deliver it. I hired across design, research, design technology, and writing, led a focused discovery team, and worked with product and engineering leaders to align priorities.</p>
+        <p>I used written vision and strategy documents to make the customer problem concrete and define a future experience. Integrated prototypes gave executives and product teams something tangible to evaluate. Together, they helped move the conversation toward the customer journey and what each team needed to contribute.</p>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-devops-goals.avif">
+          <img src="public/aws-devops-goals.jpg" alt="DevOps goals framework">
+        </picture>
+      </div>
+    </div>
+
+    <div class="cs-red-quote">
+      <blockquote>The customer journey became the shared brief across teams with different roadmaps.</blockquote>
+    </div>
+
+    <div class="cs-two-col top rev">
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-journey.avif">
+          <img src="public/aws-journey.jpg" alt="Journey mapping and persona work">
+        </picture>
+      </div>
+      <div class="cs-body">
+        <p>We began by reviewing existing research, identifying gaps, and establishing a baseline for the experience. Interviews, journey mapping, usage analysis, MaxDiff task prioritization, and usability evaluations helped us identify recurring friction and focus our effort.</p>
+        <p>One disconnect stood out: design teams were focused on the practitioners operating AWS every day. Leadership conversations often centered on the executives choosing and buying it. We mapped roles, responsibilities, and influence inside customer organizations to bring those perspectives together.</p>
+      </div>
+    </div>
+
+    <div class="cs-img-grid-2" style="margin-top:80px;">
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-jtbd.avif">
+          <img src="public/aws-jtbd.jpg" alt="Jobs to be done framework">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-opportunity.avif">
+          <img src="public/aws-opportunity.jpg" alt="Opportunity mapping">
+        </picture>
+      </div>
+    </div>
+
+    <div class="cs-quote" style="margin:80px 0; padding:100px 0;">
+      <blockquote>The same person could be a developer in the morning and an operator when something broke.</blockquote>
+    </div>
+
+    <div class="cs-hats-section">
+      <div class="cs-hats-intro cs-body" style="max-width:680px;margin-bottom:40px;">
+        <p>We found that people moved between responsibilities. The same person might write code as a developer, configure infrastructure as an architect, and investigate an incident as an on-call operator. We called these responsibilities "hats." That gave us a more useful way to organize the experience: around what someone needed to accomplish in a particular moment.</p>
+      </div>
+      <div class="cs-hats-tabs">
+        <button class="cs-hat-btn active" data-hat="dev">
+          <span class="cs-hat-label">Developer</span>
+          <span class="cs-hat-time">Morning</span>
+        </button>
+        <button class="cs-hat-btn" data-hat="arch">
+          <span class="cs-hat-label">Architect</span>
+          <span class="cs-hat-time">Planning</span>
+        </button>
+        <button class="cs-hat-btn" data-hat="ops">
+          <span class="cs-hat-label">Operator</span>
+          <span class="cs-hat-time">On call</span>
+        </button>
+        <button class="cs-hat-btn" data-hat="sec">
+          <span class="cs-hat-label">Security</span>
+          <span class="cs-hat-time">Audit</span>
+        </button>
+      </div>
+      <div class="cs-hats-panels">
+        <div class="cs-hat-panel active" data-hat="dev">
+          <div class="cs-hat-panel-head">Writing and deploying infrastructure</div>
+          <p>A developer spinning up a new environment needs to define resources, configure dependencies, and get infrastructure running quickly. CloudFormation templates and Quick Setup were the primary touchpoints.</p>
+          <div class="cs-hat-need"><strong>What they needed:</strong> A clear path from intent to running infrastructure, with enough visibility to understand what was happening.</div>
+        </div>
+        <div class="cs-hat-panel" data-hat="arch">
+          <div class="cs-hat-panel-head">Designing infrastructure for reliability</div>
+          <p>An architect setting up an account needed to establish standards, configure compliance rules, and ensure the right guardrails were in place before others started building.</p>
+          <div class="cs-hat-need"><strong>What they needed:</strong> Control over organizational standards with the ability to see configuration state across a wide scope.</div>
+        </div>
+        <div class="cs-hat-panel" data-hat="ops">
+          <div class="cs-hat-panel-head">Responding to an incident</div>
+          <p>When something broke, an operator needed to understand what happened, which resources were affected, and what action to take — without having to assemble that context from multiple consoles.</p>
+          <div class="cs-hat-need"><strong>What they needed:</strong> Immediate access to the relevant facts and a direct path to remediation from the same view.</div>
+        </div>
+        <div class="cs-hat-panel" data-hat="sec">
+          <div class="cs-hat-panel-head">Investigating an audit trail</div>
+          <p>During a security review, the same person needed to trace who did what, when, and where — connecting activity records to the configuration state at that point in time.</p>
+          <div class="cs-hat-need"><strong>What they needed:</strong> A reliable record of activity with the ability to filter, correlate, and understand context without exporting raw logs.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FULL-WIDTH IMAGE STRIP (after Chapter 2) ══ -->
+<div class="cs-fullbleed-strip">
+  <picture>
+    <img src="public/aws-strip-placeholder.jpg" alt="Full width section image" style="width:100%; height:auto; display:block; object-fit:cover;">
+  </picture>
+</div>
+
+<!-- ══ CHAPTER 5: SYSTEMS MANAGER ══ -->
+<section class="cs-dark-wrap">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 05: Systems Manager: a connected operational journey</p>
+        <h2>Systems Manager: a connected operational journey</h2>
+        <p class="sub">Set up · Find context · Investigate · Act</p>
+      </div>
+    </div>
+
+    <div class="cs-body cs-body-light" style="max-width:680px;margin-bottom:80px;">
+      <p>We shaped the experience around four activities: set up, find context, investigate, and act. This gave the portfolio a shared direction while allowing teams to contribute through their existing services.</p>
+    </div>
+
+    <div class="cs-journey">
+
+      <div class="cs-journey-tabs">
+        <button class="cs-journey-tab active" data-step="01">
+          <div class="cs-journey-tab-num">01</div>
+          <div class="cs-journey-tab-label">Set up</div>
+        </button>
+        <button class="cs-journey-tab" data-step="02">
+          <div class="cs-journey-tab-num">02</div>
+          <div class="cs-journey-tab-label">Find context</div>
+        </button>
+        <button class="cs-journey-tab" data-step="03">
+          <div class="cs-journey-tab-num">03</div>
+          <div class="cs-journey-tab-label">Investigate</div>
+        </button>
+        <button class="cs-journey-tab" data-step="04">
+          <div class="cs-journey-tab-num">04</div>
+          <div class="cs-journey-tab-label">Act</div>
+        </button>
+      </div>
+
+      <div class="cs-journey-panels">
+
+        <div class="cs-journey-panel active" id="jstep-01">
+          <div class="cs-journey-panel-head">
+            <h3>Start with the outcome</h3>
+            <div>
+              <p>We introduced a library of recommended setups for common use cases. Customers could choose what they wanted to accomplish, understand what a configuration would do, and select where to apply it.</p>
+              <p>Recommended defaults simplified the common path. Advanced configuration preserved control for customers with more specialized requirements. Underneath, CloudFormation templates helped make the setups repeatable and extensible.</p>
+              <p>This work included bringing Config into the setup journey — customers could establish configuration recording by choosing coverage, delivery settings, notifications, and target accounts and Regions.</p>
+            </div>
+          </div>
+          <div class="cs-journey-imgs grid-3">
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-quick-setup.avif">
+                <img src="public/aws-quick-setup.jpg" alt="AWS Quick Setup">
+              </picture>
+            </div>
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-setup-scope.avif">
+                <img src="public/aws-setup-scope.jpg" alt="Setup scope selection">
+              </picture>
+            </div>
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-setup-targets.avif">
+                <img src="public/aws-setup-targets.jpg" alt="Setup targets">
+              </picture>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-journey-panel" id="jstep-02">
+          <div class="cs-journey-panel-head">
+            <h3>Bring the right resources into view</h3>
+            <div>
+              <p>We developed focused hubs around use cases and responsibilities, bringing related resources and information into a shared context. Resource grouping helped customers work with the infrastructure behind an application or environment.</p>
+              <p>This approach supported the "hats" insight: the most useful view depended on the responsibility someone was taking on at that moment.</p>
+            </div>
+          </div>
+          <div class="cs-journey-imgs grid-2">
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-resource-groups.avif">
+                <img src="public/aws-resource-groups.jpg" alt="Resource Groups">
+              </picture>
+            </div>
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-ssm-fleet.avif">
+                <img src="public/aws-ssm-fleet.jpg" alt="Fleet Manager">
+              </picture>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-journey-panel" id="jstep-03">
+          <div class="cs-journey-panel-head">
+            <h3>Investigate the issue in one place</h3>
+            <div>
+              <p>An operational problem should not require the customer to assemble an investigation environment first. OpsCenter organized investigation around OpsItems: operational issues with relevant resources and supporting information attached.</p>
+              <p>Config history, CloudTrail activity, metrics, and alerts helped customers understand what had happened without repeatedly reconstructing the context across consoles. Searchable details, priorities, statuses, related issues, and summary views supported both individual investigations and the broader operational workload.</p>
+            </div>
+          </div>
+          <div class="cs-journey-imgs grid-2">
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-opscenter.avif">
+                <img src="public/aws-opscenter.jpg" alt="OpsCenter">
+              </picture>
+            </div>
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-opsitem.avif">
+                <img src="public/aws-opsitem.jpg" alt="OpsItem detail view">
+              </picture>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-journey-panel" id="jstep-04">
+          <div class="cs-journey-panel-head">
+            <h3>Connect the evidence to an action</h3>
+            <div>
+              <p>Systems Manager Automation provided reusable runbooks for common operational tasks, and OpsCenter connected those runbooks to the affected resources. Customers could investigate an OpsItem and initiate an appropriate automation from the same context.</p>
+              <p>The design needed to make the target, action, and execution state understandable — particularly when an operation could affect multiple resources. This connected issue identification, investigation, and remediation into a more coherent flow.</p>
+            </div>
+          </div>
+          <div class="cs-journey-imgs grid-2">
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-automation.avif">
+                <img src="public/aws-automation.jpg" alt="Systems Manager Automation">
+              </picture>
+            </div>
+            <div class="cs-media">
+              <picture>
+                <source type="image/avif" srcset="public/aws-visual-designer.avif">
+                <img src="public/aws-visual-designer.jpg" alt="Visual Designer for Automation">
+              </picture>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 6: ONBOARDING ══ -->
+<section class="cs-bg-white">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 06: Onboarding to the new experience</p>
+        <h2>Onboarding to the new experience</h2>
+        <p class="sub">From complexity to a guided first step</p>
+      </div>
+    </div>
+
+    <div class="cs-two-col top" style="margin-bottom:56px;">
+      <div class="cs-body">
+        <p>We introduced a library of recommended setups and configurations tailored to common use cases. Customers could pick a configuration and apply it across accounts, regions, or even their entire organization — all without wrestling with unnecessary complexity.</p>
+        <p>Instead of overwhelming users with endless fields, we focused on the essentials: what the setup does and where it should be applied — whether to a single instance, an entire account, or the full organizational structure.</p>
+        <p>Under the hood, the experience was powered by CloudFormation substacks, making it easy for power users to customize and extend. We designed the product itself as a platform, allowing teams to plug in their own configurations and workflows.</p>
+      </div>
+      <div class="cs-body">
+        <p>The library was created and owned by my team as a platform, not just a catalog of templates. It offered customers ready-to-use setups that worked across accounts, regions, or entire organizations, while allowing other AWS teams to build and publish their own quick-start configurations.</p>
+        <p>This approach delivered immediate value to customers and scaled internally, enabling faster innovation, greater consistency, and a growing ecosystem of reusable solutions.</p>
+      </div>
+    </div>
+
+    <div class="cs-img-grid-3" style="margin-bottom:40px;">
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-1.avif">
+          <img src="public/aws-onboard-1.jpg" alt="Onboarding step 1">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-2.avif">
+          <img src="public/aws-onboard-2.jpg" alt="Onboarding step 2">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-3.avif">
+          <img src="public/aws-onboard-3.jpg" alt="Onboarding step 3">
+        </picture>
+      </div>
+    </div>
+
+    <div class="cs-quote" style="margin:96px 0 80px;">
+      <blockquote>When a user selects a configuration package, they're shown a clear preview of which steps will be created and how they'll run — then choose where to apply them.</blockquote>
+    </div>
+
+    <div class="cs-two-col top" style="margin-bottom:56px;">
+      <div class="cs-body">
+        <p>When a user selects a configuration package, they're shown a clear preview of which steps will be created and how they'll run. They can then choose where to apply these actions — to a single instance, an account, or the entire organization.</p>
+        <p>Each action comes with pre-filled fields based on AWS best practices, so customers can launch quickly with recommended defaults or switch to an advanced mode for full customization.</p>
+      </div>
+      <div class="cs-body">
+        <p>Selecting and configuring a package results in the creation of a curated bundle of AWS services — all tailored to the specific use case the customer has chosen. Rather than reinventing the wheel, the UI layer was designed on top of existing AWS services, abstracting away their complexity and presenting them as a single, unified workflow.</p>
+      </div>
+    </div>
+
+    <div class="cs-img-grid-2" style="margin-bottom:40px;">
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-4.avif">
+          <img src="public/aws-onboard-4.jpg" alt="Configuration package selection">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-5.avif">
+          <img src="public/aws-onboard-5.jpg" alt="Scope selection">
+        </picture>
+      </div>
+    </div>
+
+    <div class="cs-body" style="max-width:680px;margin-bottom:48px;">
+      <p>Monitoring and dashboarding became the heart of the experience. We recognized that users rarely monitor just for the sake of it — they monitor because something happens: an incident, an anomaly, a compliance flag.</p>
+      <p>To support this, we introduced a unifying concept called an "Ops Item." Each Ops Item represents a specific incident or event, capturing when it happened, what was affected, and why. The system automatically pulls in all the relevant context — monitoring metrics, logs, compliance details, and related alerts — into a single, consolidated view.</p>
+      <p>This turned what was previously a scattered, service-by-service experience into a centralized incident hub, enabling users to quickly understand the situation and take action without switching between tools or dashboards.</p>
+    </div>
+
+    <div class="cs-img-grid-3">
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-6.avif">
+          <img src="public/aws-onboard-6.jpg" alt="OpsCenter dashboard">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-7.avif">
+          <img src="public/aws-onboard-7.jpg" alt="Ops Item detail">
+        </picture>
+      </div>
+      <div class="cs-media tall">
+        <picture>
+          <source type="image/avif" srcset="public/aws-onboard-8.avif">
+          <img src="public/aws-onboard-8.jpg" alt="Ops Item automation">
+        </picture>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 7: FEATURE PORTFOLIO ══ -->
+<section class="cs-bg-light">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 07: Designing across the full feature portfolio</p>
+        <h2>Designing across the full feature portfolio</h2>
+        <p class="sub">Systems Manager · CloudFormation · CloudTrail · OpsWorks · AWS Config · Resource Groups · Tag Editor</p>
+      </div>
+    </div>
+
+    <div class="cs-body" style="max-width:680px;margin-bottom:48px;">
+      <p>My remit included the feature portfolios of Systems Manager, CloudFormation, and CloudTrail. Each served a different part of the customer journey, with shared needs for clear scope, understandable status, and control over consequential actions.</p>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">Systems Manager</div>
+          <div class="cs-feature-trigger-intro">Visibility, maintenance, and action across infrastructure</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>Systems Manager brought routine administration and urgent troubleshooting into the same portfolio. The experience needed to work for an operator inspecting one machine and an administrator making changes across a fleet.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Set up and understand</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Quick Setup</span>
+              <span class="cs-feature-tag">Hybrid Activations</span>
+              <span class="cs-feature-tag">Inventory</span>
+              <span class="cs-feature-tag">Fleet Manager</span>
+              <span class="cs-feature-tag">Compliance</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Maintain and access</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Patch Manager</span>
+              <span class="cs-feature-tag">State Manager</span>
+              <span class="cs-feature-tag">Run Command</span>
+              <span class="cs-feature-tag">Session Manager</span>
+              <span class="cs-feature-tag">Distributor</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Automate and control change</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Automation</span>
+              <span class="cs-feature-tag">Documents</span>
+              <span class="cs-feature-tag">Maintenance Windows</span>
+              <span class="cs-feature-tag">Change Calendar</span>
+              <span class="cs-feature-tag">Change Manager</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Manage application context</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Parameter Store</span>
+              <span class="cs-feature-tag">AppConfig</span>
+              <span class="cs-feature-tag">Application Manager</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Investigate and respond</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Explorer</span>
+              <span class="cs-feature-tag">OpsCenter</span>
+              <span class="cs-feature-tag">Incident Manager</span>
+              <span class="cs-feature-tag">CloudWatch integrations</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-img-grid-3" style="margin-top:32px;">
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-ssm-nav.avif">
+              <img src="public/aws-ssm-nav.jpg" alt="Systems Manager navigation">
+            </picture>
+          </div>
+          <div class="cs-media tall">
+            <img src="public/aws-inventory.png" alt="Systems Manager Inventory dashboard">
+          </div>
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-session-manager.avif">
+              <img src="public/aws-session-manager.jpg" alt="Session Manager">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">CloudFormation</div>
+          <div class="cs-feature-trigger-intro">Make infrastructure changes understandable</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>CloudFormation let customers describe infrastructure, create it repeatedly, and manage its evolution. The experience needed to communicate what would change, which resources depended on one another, and what happened when a deployment failed.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Define and reuse</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">JSON and YAML templates</span>
+              <span class="cs-feature-tag">Parameters and outputs</span>
+              <span class="cs-feature-tag">Designer</span>
+              <span class="cs-feature-tag">Nested stacks</span>
+              <span class="cs-feature-tag">Modules</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Deploy at scale</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Stack creation and updates</span>
+              <span class="cs-feature-tag">StackSets</span>
+              <span class="cs-feature-tag">Resource import</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Review and recover</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Change Sets</span>
+              <span class="cs-feature-tag">Drift detection</span>
+              <span class="cs-feature-tag">Rollback controls</span>
+              <span class="cs-feature-tag">Stack failure options</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Extend the platform</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Registry resources</span>
+              <span class="cs-feature-tag">Macros</span>
+              <span class="cs-feature-tag">Dynamic references</span>
+              <span class="cs-feature-tag">CDK and SAM integrations</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-img-grid-2" style="margin-top:32px;">
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-cloudformation.avif">
+              <img src="public/aws-cloudformation.jpg" alt="CloudFormation stacks">
+            </picture>
+          </div>
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-cfn-designer.avif">
+              <img src="public/aws-cfn-designer.jpg" alt="CloudFormation Designer">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">CloudTrail</div>
+          <div class="cs-feature-trigger-intro">Turn activity records into an investigation</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>CloudTrail helped customers answer a practical question: who did what, where, and when? The experience connected recording choices with the ability to find and understand relevant activity later.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Find activity</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Event History</span>
+              <span class="cs-feature-tag">Filtering</span>
+              <span class="cs-feature-tag">Event details</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Define coverage</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Management and data events</span>
+              <span class="cs-feature-tag">Multi-Region logging</span>
+              <span class="cs-feature-tag">Organization-wide trails</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Store and protect</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">S3 delivery</span>
+              <span class="cs-feature-tag">CloudWatch Logs integration</span>
+              <span class="cs-feature-tag">Encryption</span>
+              <span class="cs-feature-tag">Log-file integrity validation</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Investigate</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">CloudTrail Insights</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-img-grid-2" style="margin-top:32px;">
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-cloudtrail.avif">
+              <img src="public/aws-cloudtrail.jpg" alt="CloudTrail event history">
+            </picture>
+          </div>
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-cloudtrail-event.avif">
+              <img src="public/aws-cloudtrail-event.jpg" alt="CloudTrail event detail">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">OpsWorks</div>
+          <div class="cs-feature-trigger-intro">Configuration management for chef and puppet</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>OpsWorks provided managed Chef and Puppet for customers who needed configuration management at scale. The experience needed to connect the operational model of configuration automation with the visibility customers expected from a console.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Configure and automate</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">OpsWorks for Chef Automate</span>
+              <span class="cs-feature-tag">OpsWorks for Puppet Enterprise</span>
+              <span class="cs-feature-tag">OpsWorks Stacks</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Manage instances and apps</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Layers and instances</span>
+              <span class="cs-feature-tag">App deployment</span>
+              <span class="cs-feature-tag">Lifecycle events</span>
+              <span class="cs-feature-tag">Auto healing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">AWS Config</div>
+          <div class="cs-feature-trigger-intro">Understand configuration state across your environment</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>AWS Config recorded the configuration of resources and tracked how they changed over time. The experience needed to connect recording choices with the ability to understand the state of an environment at a specific point, and to evaluate that state against compliance rules.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Record and track</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Configuration recorder</span>
+              <span class="cs-feature-tag">Configuration history</span>
+              <span class="cs-feature-tag">Configuration timeline</span>
+              <span class="cs-feature-tag">Relationships view</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--grey-200);margin-bottom:10px;">Evaluate and remediate</p>
+            <div class="cs-feature-list">
+              <span class="cs-feature-tag">Config Rules</span>
+              <span class="cs-feature-tag">Conformance Packs</span>
+              <span class="cs-feature-tag">Remediation actions</span>
+              <span class="cs-feature-tag">Aggregators</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-img-grid-2" style="margin-top:32px;">
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-config.avif">
+              <img src="public/aws-config.jpg" alt="AWS Config dashboard">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-feature-group">
+      <button class="cs-feature-trigger" aria-expanded="false">
+        <div>
+          <div class="cs-feature-trigger-label">Resource Groups &amp; Tag Editor</div>
+          <div class="cs-feature-trigger-intro">Building v2 and retiring v1</div>
+        </div>
+        <div class="cs-feature-caret">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </div>
+      </button>
+      <div class="cs-feature-body">
+        <div class="cs-body" style="max-width:640px;padding-bottom:16px;">
+          <p>My work on Resource Groups and Tag Editor covered their second-generation experiences, the retirement of v1, and the transition of existing customers to v2. Building v2 and moving existing customers were connected responsibilities.</p>
+        </div>
+        <div class="cs-quote" style="margin:24px 0 0;">
+          <blockquote>The transition from v1 was part of delivering v2.</blockquote>
+        </div>
+        <div class="cs-img-grid-2" style="margin-top:32px;">
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-tag-editor.avif">
+              <img src="public/aws-tag-editor.jpg" alt="Tag Editor v2">
+            </picture>
+          </div>
+          <div class="cs-media tall">
+            <picture>
+              <source type="image/avif" srcset="public/aws-config.avif">
+              <img src="public/aws-config.jpg" alt="AWS Config">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 8: TEAM ══ -->
+<section class="cs-bg-white">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 08: Building the team behind the experience</p>
+        <h2>Building the team behind the experience</h2>
+        <p class="sub">Organizational work as product work</p>
+      </div>
+    </div>
+
+    <!-- Leadership Responsibilities -->
+    <div class="cs-leadership">
+      <div class="cs-leadership-img">
+        <img src="public/aws-team-1-new.avif" alt="Leadership workshop at AWS">
+      </div>
+      <div class="cs-leadership-content">
+        <h2>Leadership Responsibilities</h2>
+        <ul class="cs-leadership-list">
+          <li>Set the vision and UX strategy for simplifying AWS operations into task-based, modular experiences.</li>
+          <li>Defined KPIs linking design outcomes to business metrics such as ARR growth, onboarding efficiency, and reduced support tickets.</li>
+          <li>Built and scaled the design organization — hiring designers, researchers, design technologists, and writers.</li>
+          <li>Led a tiger team to drive the discovery phase, define personas, map jobs-to-be-done, and deliver the first integrated prototypes.</li>
+          <li>Pitched the strategy to executives and GMs, securing buy-in and resources.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cs-two-col top" style="gap: 96px;">
+      <div class="cs-body">
+        <p>The product direction required sustained collaboration across more than 30 teams in nine organizational units. I worked across hiring, resourcing, career development, design processes, and product milestones.</p>
+        <p>Research gave teams a shared understanding of customer needs. Written strategy supported decisions about direction and investment. Prototypes made cross-service workflows concrete enough to discuss and develop together.</p>
+        <p>The organizational work and product work reinforced each other: connecting the experience required teams to understand how their decisions affected the wider journey.</p>
+      </div>
+      <div class="cs-img-grid-2" style="margin-top:0; gap:24px;">
+        <div class="cs-media free">
+          <picture>
+            <source type="image/avif" srcset="public/aws-team-1-new.avif">
+            <img src="public/aws-team-1-new.jpg" alt="Team at AWS">
+          </picture>
+        </div>
+        <div class="cs-media free">
+          <picture>
+            <source type="image/avif" srcset="public/aws-team-2-new.avif">
+            <img src="public/aws-team-2-new.jpg" alt="Team at AWS">
+          </picture>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CHAPTER 9: IMPACT ══ -->
+<section class="cs-dark-wrap">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 09: Impact</p>
+        <h2>Impact</h2>
+        <p class="sub">AWS Management Tools</p>
+      </div>
+    </div>
+
+    <div class="cs-impact-row">
+      <div class="cs-impact-stat">
+        <div class="cs-impact-num">−45%</div>
+        <div class="cs-impact-label">Reduced support tickets</div>
+      </div>
+      <div class="cs-impact-stat">
+        <div class="cs-impact-num">+120%</div>
+        <div class="cs-impact-label">Customer satisfaction</div>
+      </div>
+      <div class="cs-impact-stat">
+        <div class="cs-impact-num">+70%</div>
+        <div class="cs-impact-label">Engineering efficiency</div>
+      </div>
+      <div class="cs-impact-stat">
+        <div class="cs-impact-num">2nd</div>
+        <div class="cs-impact-label">Most used service in AWS</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ ACHIEVEMENT ══ -->
+<section class="cs-bg-light">
+  <div class="container cs-pad">
+
+    <div class="cs-chapter">
+      <div class="cs-chapter-head" style="grid-column: 1 / -1;">
+        <p class="sub" style="color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 12px;">Chapter 10: What the work delivered</p>
+        <h2>What the work delivered</h2>
+        <p class="sub">Three connected outcomes</p>
+      </div>
+    </div>
+
+    <div class="cs-outcome-grid">
+      <div class="cs-outcome-card wide">
+        <div class="oc-num">01</div>
+        <h3>A connected operational experience</h3>
+        <p>Systems Manager brought setup, resource context, investigation, and automation closer together, with Config and CloudTrail contributing information to the operational journey.</p>
+      </div>
+      <div class="cs-outcome-card narrow">
+        <div class="oc-num">02</div>
+        <h3>A foundation other teams could extend</h3>
+        <p>The setup library and reusable configurations gave teams a shared way to contribute capabilities while building on existing AWS services.</p>
+      </div>
+      <div class="cs-outcome-card narrow">
+        <div class="oc-num">03</div>
+        <h3>A new generation of resource management</h3>
+        <p>Resource Groups v2 and Tag Editor v2 extended the work into new product experiences, including the retirement of v1 and customer transitions.</p>
+      </div>
+    </div>
+
+    <!-- Achievement quote -->
+    <div class="cs-achievement-block">
+      <div class="cs-achievement-mark">"</div>
+      <blockquote>Going through the capabilities and experience of Systems Manager is beyond the purpose of this post, but the people who built it and keep building it are some of the unsung heroes of the company. If you have not followed the evolution of this service, you should pay attention</blockquote>
+      <a href="https://perilli.com/acontrarianview/amazon-has-won-enterprise-it-management/" class="cs-achievement-src" target="_blank" rel="noopener">perilli.com — Amazon Has Won Enterprise IT Management</a>
+      <div class="cs-achievement-mark cs-achievement-mark-close">"</div>
+    </div>
+
+    <div class="cs-red-quote" style="margin-top:80px;">
+      <blockquote>The work between products deserves as much attention as the work within them.</blockquote>
+    </div>
+
+    <div class="cs-body" style="max-width:680px;">
+      <p>The work between products is where customers encounter missing context, repeated steps, and conflicting mental models. At AWS, I learned to lead through those boundaries: understand the customer's work, make a shared direction concrete, and build the relationships and team capacity needed to deliver it.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BACK ══ -->
+<div class="cs-back-section">
+  <div class="container">
+    <a href="projects.html" class="cs-back-link">← Back to all projects</a>
+  </div>
+</div>
+
+</main>
+<footer>
+<div class="footer-inner">
+  <div class="footer-bottom">
+    <p>&copy; Copyright <span id="footer-year">2026</span>. All Rights Reserved by <a href="index.html">Daria Tarawneh</a></p>
+  </div>
+</div>
+</footer>
+
+<script>
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>
+
+<script>
+const hamburger = document.querySelector(".nav-hamburger");
+const drawer = document.querySelector(".nav-drawer");
+if (hamburger && drawer) {
+  hamburger.addEventListener("click", () => {
+    const open = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!open));
+    drawer.setAttribute("aria-hidden", String(open));
+    hamburger.classList.toggle("open", !open);
+    drawer.classList.toggle("open", !open);
+  });
+  drawer.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    });
+  });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+      hamburger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      hamburger.classList.remove("open");
+      drawer.classList.remove("open");
+    }
+  });
+}
+</script>
+
+<script>
+document.querySelectorAll('.cs-feature-trigger').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.cs-feature-group');
+    const isOpen = group.classList.contains('open');
+    group.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+
+// Arc stops (ch02 portfolio timeline)
+const arcStops = document.querySelectorAll('.cs-arc-stop');
+const arcDetailWrap = document.querySelector('.cs-arc-detail-wrap');
+const arcDetailVerb = document.getElementById('arc-detail-verb');
+const arcDetailName = document.getElementById('arc-detail-name');
+const arcDetailText = document.getElementById('arc-detail-text');
+const arcDetailImg = document.getElementById('arc-detail-img');
+
+function setArcActive(stop) {
+  const idx = Array.from(arcStops).indexOf(stop);
+  arcStops.forEach((s, i) => {
+    s.classList.remove('active', 'past');
+    if (i < idx) s.classList.add('past');
+  });
+  stop.classList.add('active');
+
+  // Update detail panel
+  if (arcDetailVerb) arcDetailVerb.textContent = stop.dataset.verb;
+  if (arcDetailName) arcDetailName.textContent = stop.dataset.name;
+  if (arcDetailText) {
+    arcDetailText.style.opacity = '0';
+    arcDetailText.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      arcDetailText.textContent = stop.dataset.detail;
+      arcDetailText.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      arcDetailText.style.opacity = '1';
+      arcDetailText.style.transform = 'translateY(0)';
+    }, 60);
+  }
+  if (arcDetailImg && stop.dataset.image) {
+    arcDetailImg.classList.remove('loaded');
+    arcDetailImg.onload = () => arcDetailImg.classList.add('loaded');
+    arcDetailImg.src = stop.dataset.image;
+    arcDetailImg.alt = stop.dataset.name;
+    if (arcDetailImg.complete) arcDetailImg.classList.add('loaded');
+  }
+  if (arcDetailWrap) arcDetailWrap.classList.add('open');
+}
+
+arcStops.forEach(stop => {
+  stop.addEventListener('click', () => setArcActive(stop));
+});
+// Show initial image
+if (arcDetailImg && arcDetailImg.complete) arcDetailImg.classList.add('loaded');
+
+// Hats tabs
+document.querySelectorAll('.cs-hat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const hat = btn.dataset.hat;
+    document.querySelectorAll('.cs-hat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.cs-hat-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.querySelector('.cs-hat-panel[data-hat="' + hat + '"]');
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// Journey step tabs
+document.querySelectorAll('.cs-journey-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const step = tab.dataset.step;
+    document.querySelectorAll('.cs-journey-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cs-journey-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('jstep-' + step);
+    if (panel) panel.classList.add('active');
+  });
+});
+</script>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cs-reveal-img {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-reveal-img.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  // Scroll-reveal: chapter heads, pull quotes, body text blocks, voice wall, challenge block, stats
+  var revealEls = document.querySelectorAll(
+    '.cs-chapter, .cs-quote, .cs-challenge-block, .cs-scope-strip, ' +
+    '.cs-impact-row, .cs-achievement-block, .cs-outcome-grid, ' +
+    '.cs-voice-wall, .cs-metrics-grid, .cs-hats-section, .cs-journey-arc, ' +
+    '.cs-back-link'
+  );
+  revealEls.forEach(function(el) { el.classList.add('cs-reveal'); });
+
+  // Image reveals with slight scale
+  var imgEls = document.querySelectorAll('.cs-media, .cs-img-grid-2, .cs-img-grid-3, .cs-feature-group');
+  imgEls.forEach(function(el) { el.classList.add('cs-reveal-img'); });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.cs-reveal, .cs-reveal-img').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Challenge cards staggered scroll animation
+  var cardObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var cards = entry.target.querySelectorAll('.cs-challenge-card');
+        cards.forEach(function(card, i) {
+          setTimeout(function() {
+            card.classList.add('visible');
+          }, i * 100);
+        });
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  var challengeWrap = document.querySelector('.cs-challenge-cards');
+  if (challengeWrap) cardObserver.observe(challengeWrap);
+
+  // Hero video drift: moves upward at half scroll speed as you scroll past the hero
+  var heroVideo = document.querySelector('.cs-hero-bg-video');
+  var hero = document.querySelector('.cs-hero');
+  if (heroVideo && hero) {
+    var ticking = false;
+    function updateHeroDrift() {
+      var scrollY = window.scrollY;
+      var heroH = hero.offsetHeight;
+      if (scrollY <= heroH) {
+        heroVideo.style.transform = 'translateY(' + (scrollY * 0.25) + 'px)';
+      }
+      ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        requestAnimationFrame(updateHeroDrift);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+})();
+</script>
+
+<!-- Scroll animations & parallax -->
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    /* Staggered children inside grids */
+    .cs-stagger-child {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-stagger-child.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Fade-up for body text paragraphs */
+    .cs-body-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-body-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Chapter red label pops in with a slight scale */
+    .cs-label-reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cs-label-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Parallax image wrapper — inner img slides against scroll */
+    .cs-parallax-wrap {
+      overflow: hidden;
+    }
+    .cs-parallax-wrap img,
+    .cs-parallax-wrap picture {
+      will-change: transform;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // --- 1. Body text fade-up ---
+  document.querySelectorAll('.cs-body p, .cs-two-col p').forEach(function(el) {
+    el.classList.add('cs-body-reveal');
+  });
+
+  // --- 2. Chapter red labels ---
+  document.querySelectorAll('.cs-chapter-head .sub').forEach(function(el) {
+    el.classList.add('cs-label-reveal');
+  });
+
+  // --- 3. Staggered grid children ---
+  var staggerSelectors = [
+    '.cs-impact-row .cs-impact-stat',
+    '.cs-metrics-grid .cs-metric',
+    '.cs-outcome-grid .cs-outcome-card',
+    '.cs-scope-strip .cs-scope-item',
+    '.cs-achievement-block .cs-achievement-item',
+    '.cs-feature-group'
+  ];
+  staggerSelectors.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      el.classList.add('cs-stagger-child');
+    });
+  });
+
+  // --- 4. Observe all newly marked elements ---
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+
+      // Staggered children: find index among siblings of same class
+      if (el.classList.contains('cs-stagger-child')) {
+        var parent = el.parentElement;
+        var siblings = Array.from(parent.querySelectorAll('.cs-stagger-child'));
+        var idx = siblings.indexOf(el);
+        setTimeout(function() { el.classList.add('is-visible'); }, idx * 80);
+      } else {
+        el.classList.add('is-visible');
+      }
+      io.unobserve(el);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.cs-body-reveal, .cs-label-reveal, .cs-stagger-child').forEach(function(el) {
+    io.observe(el);
+  });
+
+  // --- 5. Image parallax ---
+  // Wrap each content picture in a parallax container and drift the inner img
+  var parallaxImgs = Array.from(document.querySelectorAll(
+    '.cs-media picture, .cs-img-grid-2 picture, .cs-img-grid-3 picture, .cs-journey-imgs picture'
+  ));
+
+  parallaxImgs.forEach(function(pic) {
+    pic.parentElement.classList.add('cs-parallax-wrap');
+  });
+
+  var ticking2 = false;
+  function updateParallax() {
+    var scrollY = window.scrollY;
+    parallaxImgs.forEach(function(pic) {
+      var rect = pic.parentElement.getBoundingClientRect();
+      var vh = window.innerHeight;
+      // Only apply when near viewport
+      if (rect.bottom < -vh || rect.top > vh * 2) return;
+      // progress from 0 (bottom of viewport) to 1 (top)
+      var progress = (vh - rect.top) / (vh + rect.height);
+      // drift range: -16px to +16px
+      var drift = (progress - 0.5) * 32;
+      pic.style.transform = 'translateY(' + drift + 'px)';
+    });
+    ticking2 = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking2) {
+      requestAnimationFrame(updateParallax);
+      ticking2 = true;
+    }
+  }, { passive: true });
+
+  updateParallax();
+
+  // --- 6. Dark section background parallax ---
+  var darkWraps = Array.from(document.querySelectorAll('.cs-dark-wrap'));
+  var ticking3 = false;
+  function updateDarkParallax() {
+    var scrollY = window.scrollY;
+    darkWraps.forEach(function(wrap) {
+      var rect = wrap.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (rect.bottom < -100 || rect.top > vh + 100) return;
+      var progress = (vh - rect.top) / (vh + rect.height);
+      var drift = (progress - 0.5) * 40;
+      wrap.style.backgroundPositionY = 'calc(50% + ' + drift + 'px)';
+    });
+    ticking3 = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking3) {
+      requestAnimationFrame(updateDarkParallax);
+      ticking3 = true;
+    }
+  }, { passive: true });
+
+  // --- 7. Letter-by-letter animation for hero quote ---
+  var heroQuote = document.querySelector('#hero-quote blockquote');
+  if (heroQuote) {
+    var text = heroQuote.textContent;
+    heroQuote.innerHTML = '';
+    heroQuote.setAttribute('aria-label', text);
+    text.split('').forEach(function(ch) {
+      var span = document.createElement('span');
+      span.textContent = ch === ' ' ? ' ' : ch;
+      span.className = 'cs-letter';
+      span.style.cssText = 'opacity:0; display:inline; transition: opacity 0.04s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1); transform: translateY(8px); display: inline-block;';
+      if (ch === ' ') span.style.width = '0.3em';
+      heroQuote.appendChild(span);
+    });
+
+    var lettersFired = false;
+    var letterObserver = new IntersectionObserver(function(entries) {
+      if (lettersFired || !entries[0].isIntersecting) return;
+      lettersFired = true;
+      var letters = heroQuote.querySelectorAll('.cs-letter');
+      letters.forEach(function(span, i) {
+        setTimeout(function() {
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        }, i * 18);
+      });
+      letterObserver.disconnect();
+    }, { threshold: 0.3 });
+    letterObserver.observe(heroQuote);
+  }
+})();
+</script>
+
+
+<script src="cms.js"></script>
+</body>
+</html>

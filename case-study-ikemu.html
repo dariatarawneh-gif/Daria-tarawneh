@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iKEMU Games Platform — Daria Tarawneh</title>
+  <meta name="description" content="Case study: iKEMU Games — a branded games marketplace connecting developers and brands. Founder and Head of Product, 7 years." />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cs-page { background: var(--white); }
+
+    /* ── HERO ── */
+    .cs-hero {
+      position: relative;
+      background: #0f1923;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0;
+      overflow: hidden;
+      margin-top: -70px;
+    }
+    .cs-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .cs-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, #0f1923 0%, rgba(15,25,35,0.75) 50%, rgba(15,25,35,0.4) 100%);
+    }
+    .cs-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 140px 48px 72px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .cs-hero-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+    .cs-hero h1 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(56px, 8vw, 110px);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 0.93;
+      letter-spacing: -3px;
+      margin-bottom: 40px;
+      max-width: 1000px;
+    }
+    .cs-hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+    .cs-meta-bar {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 32px;
+      flex-wrap: wrap;
+    }
+    .cs-meta-cell {
+      padding-right: 40px;
+      min-width: 110px;
+    }
+    .cs-meta-cell + .cs-meta-cell {
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding-left: 40px;
+    }
+    .cs-meta-cell .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 5px;
+    }
+    .cs-meta-cell .value {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── PAGE BODY ── */
+    .ik-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ── CHAPTER MARKER ── */
+    .ik-chapter {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 100px 0 0;
+      border-top: 1px solid var(--grey-100);
+      margin-bottom: 48px;
+    }
+    .ik-chapter.no-border { border-top: none; padding-top: 64px; }
+    .ik-chapter-num {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: 88px;
+      line-height: 0.85;
+      color: var(--grey-100);
+      letter-spacing: -4px;
+      user-select: none;
+      text-align: right;
+    }
+    .ik-chapter-head h2 {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.5vw, 48px);
+      text-transform: uppercase;
+      color: var(--grey-200);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+    .ik-chapter-head .sub {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-150);
+    }
+
+    /* ── BODY TEXT ── */
+    .ik-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--grey-200);
+      line-height: 1.75;
+    }
+    .ik-body p + p { margin-top: 1.25em; }
+    .ik-body-narrow { max-width: 720px; }
+
+    /* ── TWO-COL ── */
+    .ik-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin: 48px 0;
+    }
+    .ik-two-col.flip { direction: rtl; }
+    .ik-two-col.flip > * { direction: ltr; }
+
+    /* ── MEDIA ── */
+    .ik-media {
+      overflow: hidden;
+      border-radius: 12px;
+      background: var(--bg);
+    }
+    .ik-media img { width: 100%; height: auto; display: block; }
+    .ik-media-full {
+      margin: 48px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .ik-media-full img { width: 100%; height: auto; display: block; }
+    .ik-caption {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--grey-150);
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .ik-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 48px 0;
+    }
+    .ik-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 48px 0;
+    }
+
+    /* ── QUOTE ── */
+    .ik-quote {
+      background: var(--red);
+      margin: 64px 0;
+      padding: 56px 64px;
+    }
+    .ik-quote blockquote {
+      font-family: 'Antonio', sans-serif;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    /* ── TAGS ── */
+    .ik-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 24px 0 0;
+    }
+    .ik-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid var(--grey-100);
+      color: var(--grey-150);
+    }
+
+    /* ── STATS STRIP ── */
+    .ik-stats {
+      background: #0d0d0d;
+      padding: 72px 0;
+      margin: 64px 0;
+    }
+    .ik-stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .ik-stat-num {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(40px, 5vw, 72px);
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 8px;
+    }
+    .ik-stat-num span { color: var(--red); }
+    .ik-stat-label {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── NEXT PROJECT ── */
+    .ik-next {
+      background: var(--bg);
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .ik-next-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey-150);
+      margin-bottom: 20px;
+    }
+    .ik-next-title {
+      font-family: 'Antonio', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 3.5vw, 48px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: var(--grey-200);
+      margin-bottom: 32px;
+    }
+    .ik-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background: var(--grey-200);
+      color: #fff;
+      transition: background 0.2s ease;
+    }
+    .ik-btn:hover { background: var(--red); }
+
+    /* ── SCROLL REVEAL ── */
+    .cs-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .cs-reveal.is-visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .ik-wrap { padding: 0 24px; }
+      .cs-hero-content { padding: 120px 24px 56px; }
+      .ik-two-col, .ik-two-col.flip { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+      .ik-grid-2, .ik-grid-3 { grid-template-columns: 1fr; }
+      .ik-stats-inner { grid-template-columns: 1fr 1fr; }
+      .ik-chapter { grid-template-columns: 1fr; }
+      .ik-chapter-num { display: none; }
+      .ik-quote { padding: 40px 24px; }
+      .ik-next { padding: 64px 24px; }
+    }
+  </style>
+</head>
+
+<body class="cs-page">
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><picture><source type="image/avif" srcset="public/daria-hero.avif"><img src="public/daria-hero.jpg" alt="Daria Tarawneh"></picture></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact" class="nav-contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" aria-hidden="true">
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="speaking.html">Speaking</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main-content">
+
+  <!-- HERO -->
+  <section class="cs-hero">
+    <img class="cs-hero-bg" src="Ikemu/f33c90_f8dca46c917a4e19be03974f71d8e46c~mv2.avif" alt="">
+    <div class="cs-hero-overlay"></div>
+    <div class="cs-hero-content">
+      <div class="cs-hero-tag">Case study — Founder &amp; Head of Product</div>
+      <h1>iKEMU<br>Games</h1>
+      <p class="cs-hero-sub">A marketplace turning branded mini-games into a measurable engagement channel. From founding idea to 50-person organisation operating across Asia and the Middle East.</p>
+      <div class="cs-meta-bar">
+        <div class="cs-meta-cell">
+          <div class="label">Role</div>
+          <div class="value">Founder &amp; Head of Product</div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="label">Duration</div>
+          <div class="value">7 years</div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="label">Team</div>
+          <div class="value">50 people</div>
+        </div>
+        <div class="cs-meta-cell">
+          <div class="label">Focus</div>
+          <div class="value">Platform design · Product strategy · 0→1</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ik-wrap">
+
+    <!-- 01 THE PROBLEM -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">01</div>
+      <div class="ik-chapter-head">
+        <h2>Ads were ignored.<br>Games were not.</h2>
+        <p class="sub">The founding insight</p>
+      </div>
+    </div>
+
+    <div class="ik-two-col cs-reveal">
+      <div class="ik-body">
+        <p>Brands wanted meaningful engagement — not impressions, not scroll-past banners. At the same time, game developers were building HTML5 games with no straightforward path to monetisation or brand partnerships.</p>
+        <p>iKEMU was founded on a single insight: a person's ability to memorise is 10× higher when playing a game than when watching an ad. If you build the marketplace between developers and brands, both problems disappear.</p>
+        <div style="border-left: 3px solid var(--red); padding-left: 24px; margin-top: 32px;">
+          <p style="font-style: italic; font-size: 17px; line-height: 1.6;">Imagine playing a game, then suddenly in the moment you hit the last flying shrimp — you win a fish that gets sent to your home.</p>
+        </div>
+      </div>
+      <div>
+        <div class="ik-media">
+          <img src="Ikemu/f33c90_3b79af64fd8c445e9947a6a3a0632808~mv2.avif" alt="iKEMU platform context" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 PLATFORM MODEL -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">02</div>
+      <div class="ik-chapter-head">
+        <h2>Three sides of a marketplace</h2>
+        <p class="sub">Platform model</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>iKEMU served three distinct user types simultaneously: game developers who built and uploaded HTML5 games, brands who sponsored and customised those games for campaigns, and end users who played on brand microsites and mobile. Designing for all three required a platform that could flex without fracturing.</p>
+    </div>
+
+    <div class="ik-tags cs-reveal">
+      <span class="ik-tag">Developer portal</span>
+      <span class="ik-tag">Brand dashboard</span>
+      <span class="ik-tag">Games library</span>
+      <span class="ik-tag">QA pipeline</span>
+      <span class="ik-tag">Art reskinning</span>
+      <span class="ik-tag">Reward system</span>
+      <span class="ik-tag">Analytics</span>
+      <span class="ik-tag">Mobile app</span>
+    </div>
+
+    <!-- 03 STORYBOARDS -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">03</div>
+      <div class="ik-chapter-head">
+        <h2>Visualising user behaviour before building</h2>
+        <p class="sub">Research &amp; storyboarding</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>Before any wireframe was drawn, the team mapped the full journey for each user type through storyboards. The developer flow covered game submission, the DAP (Developer Approval Process), art reskinning via the asset library, and publication. The brand flow covered campaign creation, game selection, art upload, preview, and go-live.</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download.png" alt="Developer flow storyboard" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Developer flow: from HTML5 game development through QA approval to the iKEMU games library</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (1).png" alt="Brand flow storyboard" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Brand flow: campaign setup, game selection, art reskinning, and iKEMU review</p>
+    </div>
+
+    <!-- 04 IA -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">04</div>
+      <div class="ik-chapter-head">
+        <h2>Mapping a multi-sided system</h2>
+        <p class="sub">Information architecture</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>The platform had three distinct product surfaces, each with its own IA: the consumer games platform (main page, game page, profile, rewards, mall), the games library dashboard (browse, search, wishlist, my games), and the brand client dashboard (current campaigns, game history, client information).</p>
+    </div>
+
+    <div class="ik-grid-2 cs-reveal">
+      <div>
+        <div class="ik-media"><img src="Ikemu/download (3).png" alt="Consumer platform IA" /></div>
+        <p class="ik-caption">Consumer platform IA — main page through rewards and the mall</p>
+      </div>
+      <div>
+        <div class="ik-media"><img src="Ikemu/download (4).png" alt="Games library dashboard IA" /></div>
+        <p class="ik-caption">Games library dashboard — browse, search, and game detail flows</p>
+      </div>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (5).png" alt="Brand client board IA" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Brand client board IA — covering active campaigns, engagement history, and account management</p>
+    </div>
+
+    <!-- 05 GAMIFICATION -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">05</div>
+      <div class="ik-chapter-head">
+        <h2>A system that kept people playing</h2>
+        <p class="sub">Gamification &amp; engagement design</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>Retention required more than good games. The team designed a full XP and levelling system, a badge taxonomy across seven categories, a friends and challenge mechanic, and an onboarding flow that introduced each mechanic progressively. Every parameter — coins per session, time to level, badge unlock conditions — was modelled before being built.</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (6).png" alt="Full gamification system" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Full gamification system: XP curve, coin economy, badge types, and onboarding flow</p>
+    </div>
+
+    <!-- 06 WIREFRAMES -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">06</div>
+      <div class="ik-chapter-head">
+        <h2>From storyboard to screen</h2>
+        <p class="sub">Platform wireframes</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>Wireframes were produced across all three platform surfaces. The developer dashboard covered game overview, analytics, community review, and published history. The games library covered browse, search, and reskin flows. The brand client dashboard covered campaign management, engagement reporting, and reward configuration.</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (8).png" alt="Round 1 wireframes" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Round 1 wireframes — developer dashboard (left), games library (centre), brand client board (right)</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (9).png" alt="Admin and campaign wireframes" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Admin panel and campaign management wireframes — round 2</p>
+    </div>
+
+    <!-- 07 MOBILE -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">07</div>
+      <div class="ik-chapter-head">
+        <h2>From concept to polished product</h2>
+        <p class="sub">Mobile app</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>The consumer-facing mobile app went through multiple rounds of design. The initial concept established the navigation model and visual language. Round 1 wireframes refined the game listing, brands page, and search flows. The final design introduced a bold colour system, a badges screen, a game detail page, and a public player profile.</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (10).png" alt="Mobile app initial design and round 1 wireframes" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Initial design (top) and round 1 wireframes (bottom)</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (11).png" alt="Final mobile app UI" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Final UI — games list, game detail, badges, and public profile screens</p>
+    </div>
+
+    <!-- 08 BRAND CAMPAIGN BUILDER -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">08</div>
+      <div class="ik-chapter-head">
+        <h2>Four steps to a live branded game</h2>
+        <p class="sub">Brand campaign builder</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>The brand-side campaign builder distilled a complex configuration process into four guided steps: select a game, customise it, add reward details, and go live. The tool handled game preview, art reskinning, reward setup, and budget — all in a single workflow designed to be operable by a brand manager without technical support.</p>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/download (12).png" alt="Brand campaign builder" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Brand campaign builder — select game, customise, add rewards, create</p>
+    </div>
+
+    <!-- 09 KFC CASE -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">09</div>
+      <div class="ik-chapter-head">
+        <h2>854,454 plays. One month's stock sold out in two weeks.</h2>
+        <p class="sub">Campaign in action — KFC Japan</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>KFC Japan used iKEMU to build awareness for a new shrimp product. The brief called for a game that matched the campaign narrative — shrimp staging a takeover of the chicken-dominated KFC world. The team customised an existing game into an edo-period battle scene, reskinned it to the brand's aesthetic, and launched it on the campaign microsite.</p>
+    </div>
+
+    <div class="ik-grid-2 cs-reveal">
+      <div>
+        <div class="ik-media"><img src="Ikemu/download (13).png" alt="KFC Japan branded game" /></div>
+        <p class="ik-caption">KFC Japan game — branded shrimp battle on mobile</p>
+      </div>
+      <div>
+        <div class="ik-media"><img src="Ikemu/download (14).png" alt="KFC Japan campaign microsite" /></div>
+        <p class="ik-caption">KFC Japan campaign microsite — full branded experience</p>
+      </div>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/f33c90_221408e2257249a78e6833f8749cb1ca~mv2_d_2801_1695_s_2.avif" alt="KFC Japan campaign results" />
+      <p class="ik-caption" style="padding: 0 0 16px;">Campaign results — 854k plays, 1.1m Twitter reach, 106% of annual store sales target</p>
+    </div>
+
+    <!-- 10 FINAL -->
+    <div class="ik-chapter cs-reveal">
+      <div class="ik-chapter-num">10</div>
+      <div class="ik-chapter-head">
+        <h2>A platform built to last</h2>
+        <p class="sub">Final product</p>
+      </div>
+    </div>
+
+    <div class="ik-body ik-body-narrow cs-reveal">
+      <p>Over seven years, iKEMU grew from a founding idea into a fully operational games marketplace. The platform served brands across Japan, the Middle East, and Southeast Asia — with a library of branded games, a developer community, and a consumer product with a full gamification layer.</p>
+    </div>
+
+    <div class="ik-grid-2 cs-reveal">
+      <div>
+        <div class="ik-media"><img src="Ikemu/f33c90_b845280d09704a3ab51e0b30b2c31306~mv2.avif" alt="iKEMU platform screen" /></div>
+      </div>
+      <div>
+        <div class="ik-media"><img src="Ikemu/f33c90_d5302cb948c54299b1f0c08b29c3a61f~mv2_d_2617_1792_s_2.avif" alt="iKEMU platform screen 2" /></div>
+      </div>
+    </div>
+
+    <div class="ik-media-full cs-reveal">
+      <img src="Ikemu/f33c90_f8dca46c917a4e19be03974f71d8e46c~mv2.avif" alt="iKEMU admin dashboard" />
+    </div>
+
+  </div><!-- /ik-wrap -->
+
+  <!-- STATS -->
+  <div class="ik-stats cs-reveal">
+    <div class="ik-stats-inner">
+      <div>
+        <div class="ik-stat-num"><span>854</span>k</div>
+        <p class="ik-stat-label">game plays on the KFC Japan campaign alone</p>
+      </div>
+      <div>
+        <div class="ik-stat-num"><span>1.1</span>m</div>
+        <p class="ik-stat-label">total Twitter reach in a single campaign</p>
+      </div>
+      <div>
+        <div class="ik-stat-num"><span>106</span>%</div>
+        <p class="ik-stat-label">of KFC annual store sales target reached</p>
+      </div>
+      <div>
+        <div class="ik-stat-num"><span>50</span></div>
+        <p class="ik-stat-label">people built and scaled the platform over 7 years</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT -->
+  <div class="ik-next">
+    <p class="ik-next-label">Back to work</p>
+    <h2 class="ik-next-title">Explore more selected work</h2>
+    <a href="projects.html" class="ik-btn">View all projects &rarr;</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>&copy; Copyright <span id="footer-year">2026</span>. All Rights Reserved by <a href="index.html">Daria Tarawneh</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+const hamburger = document.querySelector('.nav-hamburger');
+const drawer = document.querySelector('.nav-drawer');
+if (hamburger && drawer) {
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!open));
+    drawer.setAttribute('aria-hidden', String(open));
+    hamburger.classList.toggle('open', !open);
+    drawer.classList.toggle('open', !open);
+  });
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      hamburger.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+  });
+}
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.cs-reveal').forEach(function(el) {
+  observer.observe(el);
+});
+</script>
+
+<script src="cms.js"></script>
+</body>
+</html>
