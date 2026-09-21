@@ -304,6 +304,20 @@
     }
     .ik-btn:hover { background: var(--red); }
 
+    /* ── BACK ── */
+    .cs-back-section { background: var(--bg); padding: 72px 0; border-top: 1px solid var(--grey-100); }
+    .cs-back-link {
+      font-family: 'Antonio', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--grey-150);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .cs-back-link:hover { color: var(--grey-200); }
+
     /* ── SCROLL REVEAL ── */
     .cs-reveal {
       opacity: 0;
@@ -668,11 +682,11 @@
     </div>
   </div>
 
-  <!-- NEXT -->
-  <div class="ik-next">
-    <p class="ik-next-label">Back to work</p>
-    <h2 class="ik-next-title">Explore more selected work</h2>
-    <a href="projects.html" class="ik-btn">View all projects &rarr;</a>
+  <!-- BACK -->
+  <div class="cs-back-section">
+    <div class="container">
+      <a href="projects.html" class="cs-back-link">&#8592; Back to all projects</a>
+    </div>
   </div>
 
 </main>
