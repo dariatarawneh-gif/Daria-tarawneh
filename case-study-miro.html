@@ -271,6 +271,10 @@
       max-width: 900px;
     }
     .cs-quote.red blockquote { color: var(--red); }
+    .cs-highlight {
+      background: linear-gradient(to bottom, transparent 62%, rgba(227,76,39,0.22) 62%);
+      font-weight: 600;
+    }
     .cs-quote.inv { border-top-color: rgba(255,255,255,0.1); border-bottom-color: rgba(255,255,255,0.1); }
     .cs-quote.inv blockquote { color: #fff; }
 
@@ -722,10 +726,10 @@
 
       <div class="cs-col-60-40" style="margin-bottom:64px;">
         <div class="cs-body">
-          <p>I was hired to build Miro's enterprise foundation. That meant owning the experience through which organizations administered the product, controlled access, protected content, and supported adoption.</p>
-          <p>The investment was not self-evident internally. Our CEO questioned whether admins cared enough about usability to justify shifting attention from the canvas and its end users. Rebuilding the legacy experience also carried migration risk, and the return was uncertain.</p>
-          <p>I commissioned and gathered customer evidence, worked with business development and support to understand lost customers, and partnered with a data scientist to assess potential growth and ARR. The evidence challenged an assumption behind our priorities: admins were less technical than we expected, and customers could not simply work around a difficult enterprise experience.</p>
-          <p>I used that evidence to argue for rebuilding the information architecture and funding a dedicated team focused on the customer journey. The decision was about what Miro needed to become a product large enterprises could adopt and expand.</p>
+          <p>I was hired to build <strong>Miro's enterprise foundation</strong>. That meant owning the experience through which organizations administered the product, controlled access, protected content, and supported adoption.</p>
+          <p>The investment was not self-evident internally. <span class="cs-highlight">Our CEO questioned whether admins cared enough about usability</span> to justify shifting attention from the canvas and its end users. Rebuilding the legacy experience also carried migration risk, and the return was uncertain.</p>
+          <p>I commissioned and gathered customer evidence, worked with business development and support to understand lost customers, and partnered with a data scientist to assess potential growth and ARR. The evidence challenged an assumption behind our priorities: <strong>admins were less technical than we expected</strong>, and customers could not simply work around a difficult enterprise experience.</p>
+          <p>I used that evidence to argue for <strong>rebuilding the information architecture</strong> and funding a dedicated team focused on the customer journey. The decision was about what Miro needed to become a product large enterprises could adopt and expand.</p>
         </div>
         <div class="cs-stack">
           <div class="cs-stack-row"><span>Collaboration Surface</span><span class="arr">&#8594;</span></div>
@@ -760,12 +764,12 @@
 
       <div class="cs-two-col top" style="margin-bottom:64px;">
         <div class="cs-body">
-          <p>I made the case for replacing the legacy information architecture with a model grounded in customer feedback. We shipped that foundation first so subsequent capabilities could build on a shared structure. We also replaced custom interface code with the design system we had created.</p>
-          <p>The transition carried real customer risk. Enterprises had integrations with ServiceNow and other third-party systems that their operations depended on. Changing the experience without protecting those connections could disrupt existing customers.</p>
+          <p>I made the case for replacing the legacy information architecture with a model grounded in customer feedback. We shipped that foundation first so subsequent capabilities could build on a shared structure. We also replaced custom interface code with the <strong>design system</strong> we had created.</p>
+          <p>The transition carried <strong>real customer risk</strong>. Enterprises had integrations with ServiceNow and other third-party systems that their operations depended on. Changing the experience without protecting those connections could disrupt existing customers.</p>
         </div>
         <div class="cs-body">
-          <p>We phased the rollout by region and enterprise size. For the largest and most complex accounts, we managed transitions individually. I funded a team to provide hands-on migration support, giving those customers direct help as they moved to the new experience.</p>
-          <p>Cohesion over consistency guided our priorities: contradictory behavior needed attention before every visual difference did. The goal was a system customers could understand and continue to rely on throughout the transition.</p>
+          <p>We <strong>phased the rollout by region and enterprise size</strong>. For the largest and most complex accounts, we managed transitions individually. I funded a team to provide hands-on migration support, giving those customers direct help as they moved to the new experience.</p>
+          <p><strong>Cohesion over consistency</strong> guided our priorities: contradictory behavior needed attention before every visual difference did. The goal was a system customers could understand and continue to rely on throughout the transition.</p>
         </div>
       </div>
 
@@ -808,10 +812,10 @@
           <picture><source type="image/avif" srcset="public/admin-dashboard.avif"><img src="public/admin-dashboard.jpg" alt="Admin dashboard - adoption trends"></picture>
         </div>
         <div class="cs-body">
-          <p>I initially prioritized enterprise capabilities that customers needed before they could sign. Working with my Product counterpart, I connected the roadmap to purchasing requirements surfaced through customers, business development, and support.</p>
-          <p>I proposed security and data-protection capabilities on the canvas, including capabilities that became paid offerings. Enterprise Guard and the broader compliance, content-security, and AI-security work helped meet requirements for deals representing more than €300 million in signed enterprise contract value.</p>
-          <p>That figure represents the value of the supported contracts, rather than revenue from the add-ons alone. It reflects the commercial importance of making Miro acceptable for enterprise use.</p>
-          <p>We then expanded our focus to helping customers grow adoption. Admins became an audience we deliberately equipped to champion Miro: understanding usage, introducing capabilities, and supporting adoption across their organizations. We judged progress through signed deals, ARR, and monthly active usage.</p>
+          <p>I initially prioritized <strong>enterprise capabilities that customers needed before they could sign</strong>. Working with my Product counterpart, I connected the roadmap to purchasing requirements surfaced through customers, business development, and support.</p>
+          <p>I proposed security and data-protection capabilities on the canvas, including capabilities that became paid offerings. <strong>Enterprise Guard</strong> and the broader compliance, content-security, and AI-security work helped meet requirements for deals representing <span class="cs-highlight">more than €300 million in signed enterprise contract value</span>.</p>
+          <p>That figure represents <strong>the value of the supported contracts, rather than revenue from the add-ons alone</strong>. It reflects the commercial importance of making Miro acceptable for enterprise use.</p>
+          <p>We then expanded our focus to helping customers grow adoption. Admins became an audience we deliberately equipped to champion Miro: understanding usage, introducing capabilities, and supporting adoption across their organizations. We judged progress through <strong>signed deals, ARR, and monthly active usage</strong>.</p>
           <div class="cs-inline-stat">A/B testing on admin surfaces lifted enterprise conversion 30%.</div>
         </div>
       </div>
@@ -822,8 +826,8 @@
 
       <div class="cs-two-col top" style="margin-top:64px;">
         <div class="cs-body">
-          <p>Entering Japan meant rebuilding infrastructure, not just localizing UI. I spent a week in Tokyo working directly with the Japanese team, customers, and end users to understand what data residency actually required: storing data in Japan-based warehouses without breaking the real-time collaboration that makes Miro work.</p>
-          <p>Trust became a paid feature, not a compliance checkbox. Enterprises were adding confidential IP directly onto their boards, and were willing to pay a 30% premium to know it was protected. Resolving the freedom vs. control tension took six months and shipped as <strong>Enterprise Guard</strong>.</p>
+          <p>Entering Japan meant <strong>rebuilding infrastructure, not just localizing UI</strong>. I spent a week in Tokyo working directly with the Japanese team, customers, and end users to understand what data residency actually required: storing data in Japan-based warehouses without breaking the real-time collaboration that makes Miro work.</p>
+          <p><strong>Trust became a paid feature, not a compliance checkbox.</strong> Enterprises were adding confidential IP directly onto their boards, and were willing to pay a <span class="cs-highlight">30% premium</span> to know it was protected. Resolving the freedom vs. control tension took six months and shipped as <strong>Enterprise Guard</strong>.</p>
         </div>
         <div class="cs-media tall">
           <picture><source type="image/avif" srcset="public/japan.avif"><img src="public/japan.jpg" alt="Miro Japan - team visit and data residency work"></picture>
@@ -849,8 +853,8 @@
 
       <div class="cs-two-col top" style="margin-bottom:56px;">
         <div class="cs-body cs-body-light">
-          <p>When the AI wave hit, enterprise adoption lagged expectations, not because customers didn't want AI, but because AI didn't arrive as an isolated feature. It cut through every layer we'd already built: permissions, administration, security, compliance, governance, and the collaboration experience itself.</p>
-          <p>The architecture we'd designed for "who can access this content?" was not the right architecture for "what can intelligence do with this content?" Every system had to be rethought.</p>
+          <p>When the AI wave hit, enterprise adoption lagged expectations, not because customers didn't want AI, but because <strong>AI didn't arrive as an isolated feature</strong>. It cut through every layer we'd already built: permissions, administration, security, compliance, governance, and the collaboration experience itself.</p>
+          <p>The architecture we'd designed for <strong>"who can access this content?"</strong> was not the right architecture for <strong>"what can intelligence do with this content?"</strong> Every system had to be rethought.</p>
         </div>
         <div class="cs-shift-box">
           <div class="box-label">The shift</div>
@@ -966,9 +970,9 @@
 
       <div class="cs-two-col top" style="margin-bottom:64px;">
         <div class="cs-body">
-          <p>I led the design team across Growth and Enterprise, with authority over hiring and design budgets. I expanded the team to 20 people, using a skills matrix to identify the capabilities the future portfolio required and guide hiring.</p>
-          <p>Design capacity alone would not resolve the fragmentation. I also made the investment case to our CEO for a dedicated team of 30 engineers focused on the admin and enterprise customer experience. This gave the work sustained engineering attention for improving journeys, building missing capabilities, and moving away from legacy products.</p>
-          <p>I worked with my Product counterpart to determine priorities. Customer research, commercial requirements, and migration dependencies informed where we invested effort. Building the organization and rebuilding the product were connected responsibilities: the strategy needed a team capable of delivering across the boundaries that customers experienced.</p>
+          <p>I led the design team across Growth and Enterprise, with authority over hiring and design budgets. I expanded the team to <strong>20 people</strong>, using a <strong>skills matrix</strong> to identify the capabilities the future portfolio required and guide hiring.</p>
+          <p>Design capacity alone would not resolve the fragmentation. I also made the investment case to our CEO for a dedicated team of <strong>30 engineers</strong> focused on the admin and enterprise customer experience. This gave the work sustained engineering attention for improving journeys, building missing capabilities, and moving away from legacy products.</p>
+          <p>I worked with my Product counterpart to determine priorities. Customer research, commercial requirements, and migration dependencies informed where we invested effort. Building the organization and rebuilding the product were <strong>connected responsibilities</strong>: the strategy needed a team capable of delivering across the boundaries that customers experienced.</p>
         </div>
         <div class="cs-media free">
           <picture><source type="image/avif" srcset="public/team-matrix.avif"><img src="public/team-matrix.jpg" alt="Skills matrix - team capability mapping"></picture>
@@ -1017,7 +1021,7 @@
         </div>
         <div class="cs-shipped-item">
           <span class="snum">03</span>
-          <div><h4>Enterprise Guard</h4><p>Protects IP content and PII within the platform. Drove a 30% revenue premium on enterprise contracts.</p></div>
+          <div><h4>Enterprise Guard</h4><p>Protects IP content and PII within the platform. Drove a <strong>30% revenue premium</strong> on enterprise contracts.</p></div>
           <span class="stag">Security</span>
         </div>
         <div class="cs-shipped-item">
