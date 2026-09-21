@@ -260,6 +260,30 @@
       background: linear-gradient(to bottom, transparent 62%, rgba(227,76,39,0.22) 62%);
       font-weight: 600;
     }
+    .cs-bet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .cs-bet-grid .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .cs-bet-grid p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.75);
+    }
+    @media (max-width: 700px) {
+      .cs-bet-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
 
     /* ── TAGS ── */
     .ik-tags {
@@ -443,6 +467,12 @@
     <div class="cs-hero-content">
       <div class="cs-hero-tag">Case study — Founder &amp; Head of Product</div>
       <h1>From Zero to<br>Global: Founding<br>Ikemu Games</h1>
+    </div>
+  </section>
+
+  <!-- ══ CONTEXT SUMMARY ══ -->
+  <div style="background:#0f1923; padding:56px 48px;">
+    <div class="container" style="max-width:1200px; margin:0 auto;">
       <div class="cs-meta-bar">
         <div class="cs-meta-cell">
           <div class="label">Role</div>
@@ -469,16 +499,19 @@
           <div class="value">Brands such as KFC and Kao, and funders (I contributed to our fundraising)</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ══ CONTEXT SUMMARY ══ -->
-  <div style="background:#0f1923; padding:56px 48px;">
-    <div class="container" style="max-width:1200px; margin:0 auto;">
-      <div class="cs-hero-sub" style="max-width:660px;">
-        <p style="margin-bottom:16px;"><strong>The bet:</strong> Stop building one-off branded games for advertisers. Build a marketplace connecting brands with developers who already had HTML5 games, then take it to Japan instead of staying in New Zealand's smaller market.</p>
-        <p style="margin-bottom:16px;"><strong>What it cost:</strong> With limited funding, delivery went to outside partners chosen by tender across India, the Philippines, Russia and Jordan. I also had to build a local operation in Japan and change how I briefed teams.</p>
-        <p><strong>The result:</strong> On the KFC Japan campaign alone: 854,454 plays, 1.1M Twitter reach, and 106% of the annual store sales target. The company was later sold and rebranded as Gamify.</p>
+      <div class="cs-bet-grid">
+        <div>
+          <div class="label">The bet</div>
+          <p>Stop building one-off branded games for advertisers. Build a marketplace connecting brands with developers who already had HTML5 games, then take it to Japan instead of staying in New Zealand's smaller market.</p>
+        </div>
+        <div>
+          <div class="label">What it cost</div>
+          <p>With limited funding, delivery went to outside partners chosen by tender across India, the Philippines, Russia and Jordan. I also had to build a local operation in Japan and change how I briefed teams.</p>
+        </div>
+        <div>
+          <div class="label">The result</div>
+          <p>On the KFC Japan campaign alone: 854,454 plays, 1.1M Twitter reach, and 106% of the annual store sales target. The company was later sold and rebranded as Gamify.</p>
+        </div>
       </div>
     </div>
   </div>
